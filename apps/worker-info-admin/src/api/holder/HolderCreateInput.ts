@@ -1,0 +1,37 @@
+import { AddressCreateNestedManyWithoutHoldersInput } from "./AddressCreateNestedManyWithoutHoldersInput";
+import { AttachmentCreateNestedManyWithoutHoldersInput } from "./AttachmentCreateNestedManyWithoutHoldersInput";
+import { ContactAuthorizationWhereUniqueInput } from "../contactAuthorization/ContactAuthorizationWhereUniqueInput";
+import { ContactCreateNestedManyWithoutHoldersInput } from "./ContactCreateNestedManyWithoutHoldersInput";
+import { DocumentCreateNestedManyWithoutHoldersInput } from "./DocumentCreateNestedManyWithoutHoldersInput";
+import { EditedFieldCreateNestedManyWithoutHoldersInput } from "./EditedFieldCreateNestedManyWithoutHoldersInput";
+import { FilialCreateNestedManyWithoutHoldersInput } from "./FilialCreateNestedManyWithoutHoldersInput";
+import { PhoneCreateNestedManyWithoutHoldersInput } from "./PhoneCreateNestedManyWithoutHoldersInput";
+import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+import { SocioeconomicInfoCreateNestedManyWithoutHoldersInput } from "./SocioeconomicInfoCreateNestedManyWithoutHoldersInput";
+
+export type HolderCreateInput = {
+  addresses?: AddressCreateNestedManyWithoutHoldersInput;
+  affectionateFirstName?: string | null;
+  affectionateGender?: string | null;
+  affectionateLastName?: string | null;
+  attachments?: AttachmentCreateNestedManyWithoutHoldersInput;
+  birthDate?: Date | null;
+  contactAuthorization?: ContactAuthorizationWhereUniqueInput | null;
+  contacts?: ContactCreateNestedManyWithoutHoldersInput;
+  documents?: DocumentCreateNestedManyWithoutHoldersInput;
+  editedFields?: EditedFieldCreateNestedManyWithoutHoldersInput;
+  education?: string | null;
+  filial?: FilialCreateNestedManyWithoutHoldersInput;
+  firstName?: string | null;
+  gender?: string | null;
+  lastName?: string | null;
+  maritalStatus?: string | null;
+  phones?: PhoneCreateNestedManyWithoutHoldersInput;
+  request: RequestWhereUniqueInput;
+  socialFirstName?: string | null;
+  socialGender?: string | null;
+  socialLastName?: string | null;
+  socioeconomicInfo?: SocioeconomicInfoCreateNestedManyWithoutHoldersInput;
+  token?: string | null;
+  typeField?: string | null;
+};

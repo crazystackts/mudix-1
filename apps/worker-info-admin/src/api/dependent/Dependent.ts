@@ -1,0 +1,32 @@
+import { DependentAddress } from "../dependentAddress/DependentAddress";
+import { DependentAttachment } from "../dependentAttachment/DependentAttachment";
+import { DependentContactAuthorization } from "../dependentContactAuthorization/DependentContactAuthorization";
+import { DependentContact } from "../dependentContact/DependentContact";
+import { DependentDocument } from "../dependentDocument/DependentDocument";
+import { DependentPhone } from "../dependentPhone/DependentPhone";
+import { Request } from "../request/Request";
+
+export type Dependent = {
+  affectionateFirstName: string | null;
+  affectionateLastName: string | null;
+  birthDate: Date | null;
+  complete: boolean | null;
+  credential: string | null;
+  dependentAddresses?: Array<DependentAddress>;
+  dependentAttachments?: Array<DependentAttachment>;
+  dependentContactAuthorization?: DependentContactAuthorization | null;
+  dependentContacts?: Array<DependentContact>;
+  dependentDocuments?: Array<DependentDocument>;
+  dependentPhones?: Array<DependentPhone>;
+  education: string | null;
+  exclude: boolean | null;
+  firstName: string | null;
+  gender: string | null;
+  id: string;
+  lastName: string | null;
+  maritalStatus: string | null;
+  relationship: string | null;
+  request?: Request;
+  socialFirstName: string | null;
+  socialLastName: string | null;
+};

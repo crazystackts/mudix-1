@@ -1,0 +1,36 @@
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
+import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
+import { DependentAddressListRelationFilter } from "../dependentAddress/DependentAddressListRelationFilter";
+import { DependentAttachmentListRelationFilter } from "../dependentAttachment/DependentAttachmentListRelationFilter";
+import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
+import { DependentContactListRelationFilter } from "../dependentContact/DependentContactListRelationFilter";
+import { DependentDocumentListRelationFilter } from "../dependentDocument/DependentDocumentListRelationFilter";
+import { DependentPhoneListRelationFilter } from "../dependentPhone/DependentPhoneListRelationFilter";
+import { StringFilter } from "../../util/StringFilter";
+import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+
+export type DependentWhereInput = {
+  affectionateFirstName?: StringNullableFilter;
+  affectionateLastName?: StringNullableFilter;
+  birthDate?: DateTimeNullableFilter;
+  complete?: BooleanNullableFilter;
+  credential?: StringNullableFilter;
+  dependentAddresses?: DependentAddressListRelationFilter;
+  dependentAttachments?: DependentAttachmentListRelationFilter;
+  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput;
+  dependentContacts?: DependentContactListRelationFilter;
+  dependentDocuments?: DependentDocumentListRelationFilter;
+  dependentPhones?: DependentPhoneListRelationFilter;
+  education?: StringNullableFilter;
+  exclude?: BooleanNullableFilter;
+  firstName?: StringNullableFilter;
+  gender?: StringNullableFilter;
+  id?: StringFilter;
+  lastName?: StringNullableFilter;
+  maritalStatus?: StringNullableFilter;
+  relationship?: StringNullableFilter;
+  request?: RequestWhereUniqueInput;
+  socialFirstName?: StringNullableFilter;
+  socialLastName?: StringNullableFilter;
+};
