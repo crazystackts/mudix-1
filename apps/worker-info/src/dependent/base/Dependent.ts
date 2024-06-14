@@ -11,21 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsDate,
-  IsBoolean,
-  ValidateNested,
-} from "class-validator";
+import { IsString, IsOptional, IsDate, IsBoolean } from "class-validator";
 import { Type } from "class-transformer";
-import { DependentAddress } from "../../dependentAddress/base/DependentAddress";
-import { DependentAttachment } from "../../dependentAttachment/base/DependentAttachment";
-import { DependentContactAuthorization } from "../../dependentContactAuthorization/base/DependentContactAuthorization";
-import { DependentContact } from "../../dependentContact/base/DependentContact";
-import { DependentDocument } from "../../dependentDocument/base/DependentDocument";
-import { DependentPhone } from "../../dependentPhone/base/DependentPhone";
-import { Request } from "../../request/base/Request";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 
 @ObjectType()
 class Dependent {
@@ -86,57 +76,64 @@ class Dependent {
 
   @ApiProperty({
     required: false,
-    type: () => [DependentAddress],
   })
-  @ValidateNested()
-  @Type(() => DependentAddress)
+  @IsJSONValue()
   @IsOptional()
-  dependentAddresses?: Array<DependentAddress>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  dependentAddresses!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => [DependentAttachment],
   })
-  @ValidateNested()
-  @Type(() => DependentAttachment)
+  @IsJSONValue()
   @IsOptional()
-  dependentAttachments?: Array<DependentAttachment>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  dependentAttachments!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DependentContactAuthorization,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => DependentContactAuthorization)
+  @IsString()
   @IsOptional()
-  dependentContactAuthorization?: DependentContactAuthorization | null;
+  @Field(() => String, {
+    nullable: true,
+  })
+  dependentContactAuthorizationId!: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => [DependentContact],
   })
-  @ValidateNested()
-  @Type(() => DependentContact)
+  @IsJSONValue()
   @IsOptional()
-  dependentContacts?: Array<DependentContact>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  dependentContacts!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => [DependentDocument],
   })
-  @ValidateNested()
-  @Type(() => DependentDocument)
+  @IsJSONValue()
   @IsOptional()
-  dependentDocuments?: Array<DependentDocument>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  dependentDocuments!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => [DependentPhone],
   })
-  @ValidateNested()
-  @Type(() => DependentPhone)
+  @IsJSONValue()
   @IsOptional()
-  dependentPhones?: Array<DependentPhone>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  dependentPhones!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -225,11 +222,11 @@ class Dependent {
 
   @ApiProperty({
     required: true,
-    type: () => Request,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Request)
-  request?: Request;
+  @IsString()
+  @Field(() => String)
+  requestId!: string;
 
   @ApiProperty({
     required: false,

@@ -1,7 +1,5 @@
-import { AttachmentWhereUniqueInput } from "../attachment/AttachmentWhereUniqueInput";
-
 export type FileCreateInput = {
-  attachments: AttachmentWhereUniqueInput;
+  attachmentsId: string;
   filename?: string | null;
   name?: string | null;
   url?: string | null;

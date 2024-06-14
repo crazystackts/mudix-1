@@ -11,29 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Address } from "../../address/base/Address";
-import { ValidateNested, IsOptional, IsString, IsDate } from "class-validator";
+import { IsJSONValue } from "../../validators";
+import { IsOptional, IsString, IsDate } from "class-validator";
+import { GraphQLJSON } from "graphql-type-json";
+import { JsonValue } from "type-fest";
 import { Type } from "class-transformer";
-import { Attachment } from "../../attachment/base/Attachment";
-import { ContactAuthorization } from "../../contactAuthorization/base/ContactAuthorization";
-import { Contact } from "../../contact/base/Contact";
-import { Document } from "../../document/base/Document";
-import { EditedField } from "../../editedField/base/EditedField";
-import { Filial } from "../../filial/base/Filial";
-import { Phone } from "../../phone/base/Phone";
-import { Request } from "../../request/base/Request";
-import { SocioeconomicInfo } from "../../socioeconomicInfo/base/SocioeconomicInfo";
 
 @ObjectType()
 class Holder {
   @ApiProperty({
     required: false,
-    type: () => [Address],
   })
-  @ValidateNested()
-  @Type(() => Address)
+  @IsJSONValue()
   @IsOptional()
-  addresses?: Array<Address>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  addresses!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -70,12 +64,13 @@ class Holder {
 
   @ApiProperty({
     required: false,
-    type: () => [Attachment],
   })
-  @ValidateNested()
-  @Type(() => Attachment)
+  @IsJSONValue()
   @IsOptional()
-  attachments?: Array<Attachment>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  attachments!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -90,39 +85,44 @@ class Holder {
 
   @ApiProperty({
     required: false,
-    type: () => ContactAuthorization,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ContactAuthorization)
+  @IsString()
   @IsOptional()
-  contactAuthorization?: ContactAuthorization | null;
+  @Field(() => String, {
+    nullable: true,
+  })
+  contactAuthorizationId!: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => [Contact],
   })
-  @ValidateNested()
-  @Type(() => Contact)
+  @IsJSONValue()
   @IsOptional()
-  contacts?: Array<Contact>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  contacts!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => [Document],
   })
-  @ValidateNested()
-  @Type(() => Document)
+  @IsJSONValue()
   @IsOptional()
-  documents?: Array<Document>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  documents!: JsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => [EditedField],
   })
-  @ValidateNested()
-  @Type(() => EditedField)
+  @IsJSONValue()
   @IsOptional()
-  editedFields?: Array<EditedField>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  editedFields!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -137,12 +137,13 @@ class Holder {
 
   @ApiProperty({
     required: false,
-    type: () => [Filial],
   })
-  @ValidateNested()
-  @Type(() => Filial)
+  @IsJSONValue()
   @IsOptional()
-  filial?: Array<Filial>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  filial!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -197,21 +198,30 @@ class Holder {
   maritalStatus!: string | null;
 
   @ApiProperty({
-    required: false,
-    type: () => [Phone],
+    required: true,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Phone)
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
+    required: false,
+  })
+  @IsJSONValue()
   @IsOptional()
-  phones?: Array<Phone>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  phones!: JsonValue;
 
   @ApiProperty({
     required: true,
-    type: () => Request,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Request)
-  request?: Request;
+  @IsString()
+  @Field(() => String)
+  requestId!: string;
 
   @ApiProperty({
     required: false,
@@ -248,12 +258,13 @@ class Holder {
 
   @ApiProperty({
     required: false,
-    type: () => [SocioeconomicInfo],
   })
-  @ValidateNested()
-  @Type(() => SocioeconomicInfo)
+  @IsJSONValue()
   @IsOptional()
-  socioeconomicInfo?: Array<SocioeconomicInfo>;
+  @Field(() => GraphQLJSON, {
+    nullable: true,
+  })
+  socioeconomicInfo!: JsonValue;
 
   @ApiProperty({
     required: false,
@@ -276,6 +287,14 @@ class Holder {
     nullable: true,
   })
   typeField!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  username!: string;
 }
 
 export { Holder as Holder };

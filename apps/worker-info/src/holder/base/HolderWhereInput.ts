@@ -11,35 +11,25 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AddressListRelationFilter } from "../../address/base/AddressListRelationFilter";
-import { ValidateNested, IsOptional } from "class-validator";
+import { JsonFilter } from "../../util/JsonFilter";
 import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { AttachmentListRelationFilter } from "../../attachment/base/AttachmentListRelationFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { ContactAuthorizationWhereUniqueInput } from "../../contactAuthorization/base/ContactAuthorizationWhereUniqueInput";
-import { ContactListRelationFilter } from "../../contact/base/ContactListRelationFilter";
-import { DocumentListRelationFilter } from "../../document/base/DocumentListRelationFilter";
-import { EditedFieldListRelationFilter } from "../../editedField/base/EditedFieldListRelationFilter";
-import { FilialListRelationFilter } from "../../filial/base/FilialListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { PhoneListRelationFilter } from "../../phone/base/PhoneListRelationFilter";
-import { RequestWhereUniqueInput } from "../../request/base/RequestWhereUniqueInput";
-import { SocioeconomicInfoListRelationFilter } from "../../socioeconomicInfo/base/SocioeconomicInfoListRelationFilter";
 
 @InputType()
 class HolderWhereInput {
   @ApiProperty({
     required: false,
-    type: () => AddressListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => AddressListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => AddressListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  addresses?: AddressListRelationFilter;
+  addresses?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -76,15 +66,14 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => AttachmentListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => AttachmentListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => AttachmentListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  attachments?: AttachmentListRelationFilter;
+  attachments?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -99,51 +88,47 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ContactAuthorizationWhereUniqueInput,
+    type: StringNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => ContactAuthorizationWhereUniqueInput)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => ContactAuthorizationWhereUniqueInput, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  contactAuthorization?: ContactAuthorizationWhereUniqueInput;
+  contactAuthorizationId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: () => ContactListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => ContactListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => ContactListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  contacts?: ContactListRelationFilter;
+  contacts?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DocumentListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DocumentListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DocumentListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  documents?: DocumentListRelationFilter;
+  documents?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => EditedFieldListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => EditedFieldListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => EditedFieldListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  editedFields?: EditedFieldListRelationFilter;
+  editedFields?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -158,15 +143,14 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => FilialListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => FilialListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => FilialListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  filial?: FilialListRelationFilter;
+  filial?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -225,27 +209,36 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => PhoneListRelationFilter,
+    type: StringFilter,
   })
-  @ValidateNested()
-  @Type(() => PhoneListRelationFilter)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => PhoneListRelationFilter, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  phones?: PhoneListRelationFilter;
+  password?: StringFilter;
 
   @ApiProperty({
     required: false,
-    type: () => RequestWhereUniqueInput,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => RequestWhereUniqueInput)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => RequestWhereUniqueInput, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  request?: RequestWhereUniqueInput;
+  phones?: JsonFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  requestId?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -282,15 +275,14 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => SocioeconomicInfoListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => SocioeconomicInfoListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => SocioeconomicInfoListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  socioeconomicInfo?: SocioeconomicInfoListRelationFilter;
+  socioeconomicInfo?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -313,6 +305,17 @@ class HolderWhereInput {
     nullable: true,
   })
   typeField?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  username?: StringFilter;
 }
 
 export { HolderWhereInput as HolderWhereInput };

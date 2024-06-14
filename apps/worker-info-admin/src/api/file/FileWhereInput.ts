@@ -1,9 +1,8 @@
-import { AttachmentWhereUniqueInput } from "../attachment/AttachmentWhereUniqueInput";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type FileWhereInput = {
-  attachments?: AttachmentWhereUniqueInput;
+  attachmentsId?: StringFilter;
   filename?: StringNullableFilter;
   id?: StringFilter;
   name?: StringNullableFilter;

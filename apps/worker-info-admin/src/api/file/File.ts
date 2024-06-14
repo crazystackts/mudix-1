@@ -1,7 +1,5 @@
-import { Attachment } from "../attachment/Attachment";
-
 export type File = {
-  attachments?: Attachment;
+  attachmentsId: string;
   filename: string | null;
   id: string;
   name: string | null;

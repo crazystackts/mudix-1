@@ -11,21 +11,11 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  IsDate,
-  IsBoolean,
-  ValidateNested,
-} from "class-validator";
+import { IsString, IsOptional, IsDate, IsBoolean } from "class-validator";
 import { Type } from "class-transformer";
-import { DependentAddressUpdateManyWithoutDependentsInput } from "./DependentAddressUpdateManyWithoutDependentsInput";
-import { DependentAttachmentUpdateManyWithoutDependentsInput } from "./DependentAttachmentUpdateManyWithoutDependentsInput";
-import { DependentContactAuthorizationWhereUniqueInput } from "../../dependentContactAuthorization/base/DependentContactAuthorizationWhereUniqueInput";
-import { DependentContactUpdateManyWithoutDependentsInput } from "./DependentContactUpdateManyWithoutDependentsInput";
-import { DependentDocumentUpdateManyWithoutDependentsInput } from "./DependentDocumentUpdateManyWithoutDependentsInput";
-import { DependentPhoneUpdateManyWithoutDependentsInput } from "./DependentPhoneUpdateManyWithoutDependentsInput";
-import { RequestWhereUniqueInput } from "../../request/base/RequestWhereUniqueInput";
+import { IsJSONValue } from "../../validators";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 
 @InputType()
 class DependentUpdateInput {
@@ -86,75 +76,64 @@ class DependentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => DependentAddressUpdateManyWithoutDependentsInput,
   })
-  @ValidateNested()
-  @Type(() => DependentAddressUpdateManyWithoutDependentsInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DependentAddressUpdateManyWithoutDependentsInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  dependentAddresses?: DependentAddressUpdateManyWithoutDependentsInput;
+  dependentAddresses?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DependentAttachmentUpdateManyWithoutDependentsInput,
   })
-  @ValidateNested()
-  @Type(() => DependentAttachmentUpdateManyWithoutDependentsInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DependentAttachmentUpdateManyWithoutDependentsInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  dependentAttachments?: DependentAttachmentUpdateManyWithoutDependentsInput;
+  dependentAttachments?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DependentContactAuthorizationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => DependentContactAuthorizationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => DependentContactAuthorizationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput | null;
+  dependentContactAuthorizationId?: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => DependentContactUpdateManyWithoutDependentsInput,
   })
-  @ValidateNested()
-  @Type(() => DependentContactUpdateManyWithoutDependentsInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DependentContactUpdateManyWithoutDependentsInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  dependentContacts?: DependentContactUpdateManyWithoutDependentsInput;
+  dependentContacts?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DependentDocumentUpdateManyWithoutDependentsInput,
   })
-  @ValidateNested()
-  @Type(() => DependentDocumentUpdateManyWithoutDependentsInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DependentDocumentUpdateManyWithoutDependentsInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  dependentDocuments?: DependentDocumentUpdateManyWithoutDependentsInput;
+  dependentDocuments?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DependentPhoneUpdateManyWithoutDependentsInput,
   })
-  @ValidateNested()
-  @Type(() => DependentPhoneUpdateManyWithoutDependentsInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DependentPhoneUpdateManyWithoutDependentsInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  dependentPhones?: DependentPhoneUpdateManyWithoutDependentsInput;
+  dependentPhones?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -235,15 +214,14 @@ class DependentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => RequestWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => RequestWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => RequestWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  request?: RequestWhereUniqueInput;
+  requestId?: string;
 
   @ApiProperty({
     required: false,

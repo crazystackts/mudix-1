@@ -20,7 +20,6 @@ import { FileFindUniqueArgs } from "./FileFindUniqueArgs";
 import { CreateFileArgs } from "./CreateFileArgs";
 import { UpdateFileArgs } from "./UpdateFileArgs";
 import { DeleteFileArgs } from "./DeleteFileArgs";
-import { Attachment } from "../../attachment/base/Attachment";
 import { FileService } from "../file.service";
 @graphql.Resolver(() => File)
 export class FileResolverBase {
@@ -53,13 +52,7 @@ export class FileResolverBase {
   async createFile(@graphql.Args() args: CreateFileArgs): Promise<File> {
     return await this.service.createFile({
       ...args,
-      data: {
-        ...args.data,
-
-        attachments: {
-          connect: args.data.attachments,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -68,13 +61,7 @@ export class FileResolverBase {
     try {
       return await this.service.updateFile({
         ...args,
-        data: {
-          ...args.data,
-
-          attachments: {
-            connect: args.data.attachments,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -98,20 +85,5 @@ export class FileResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => Attachment, {
-    nullable: true,
-    name: "attachments",
-  })
-  async getAttachments(
-    @graphql.Parent() parent: File
-  ): Promise<Attachment | null> {
-    const result = await this.service.getAttachments(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

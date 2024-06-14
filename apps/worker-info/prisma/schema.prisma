@@ -7,161 +7,40 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Worker {
-  cnpj        String?
-  companyName String?
-  cpf         String    @unique
-  ctpsNumber  String?
-  ctpsSeries  String?
-  firstName   String?
-  id          String    @id @default(uuid())
-  lastName    String?
-  request     Request[]
-  status      String?
-  typeField   String?   @map("type")
-}
-
-model Request {
-  channel    String?
-  dependents Dependent[]
-  finalize   Boolean?
-  holder     Holder[]
-  id         String      @id @default(uuid())
-  ip         String?
-  renewal    Boolean?
-  step       String?
-  typeField  String?     @map("type")
-  worker     Worker      @relation(fields: [worker_id], references: [id])
-  worker_id  String
-}
-
 model Holder {
-  addresses             Address[]
-  affectionateFirstName String?
-  affectionateGender    String?
-  affectionateLastName  String?
-  attachments           Attachment[]
-  birthDate             DateTime?
-  contactAuthorization  ContactAuthorization?
-  contacts              Contact[]
-  documents             Document[]
-  editedFields          EditedField[]
-  education             String?
-  filial                Filial[]
-  firstName             String?
-  gender                String?
-  id                    String                @id @default(uuid())
-  lastName              String?
-  maritalStatus         String?
-  phones                Phone[]
-  request               Request               @relation(fields: [request_id], references: [id])
-  request_id            String
-  socialFirstName       String?
-  socialGender          String?
-  socialLastName        String?
-  socioeconomicInfo     SocioeconomicInfo[]
-  token                 String?
-  typeField             String?               @map("type")
-}
-
-model EditedField {
-  fieldName String?
-  holder    Holder  @relation(fields: [holder_id], references: [id])
-  holder_id String
-  id        String  @id @default(uuid())
-
-  @@map("EditedFields")
-}
-
-model Document {
-  holder      Holder  @relation(fields: [holder_id], references: [id])
-  holder_id   String
-  id          String  @id @default(uuid())
-  issuer      String?
-  numberField String? @map("number")
-  typeField   String? @map("type")
-
-  @@map("Documents")
-}
-
-model SocioeconomicInfo {
-  familyIncomeCode  String?
-  familyIncomeTitle String?
-  holder            Holder  @relation(fields: [holder_id], references: [id])
-  holder_id         String
-  id                String  @id @default(uuid())
-  salaryCode        String?
-  salaryTitle       String?
-}
-
-model Filial {
-  firstName String?
-  holder    Holder  @relation(fields: [holder_id], references: [id])
-  holder_id String
-  id        String  @id @default(uuid())
-  lastName  String?
-  typeField String? @map("type")
-}
-
-model Address {
-  city         String?
-  complement   String?
-  holder       Holder  @relation(fields: [holder_id], references: [id])
-  holder_id    String
-  id           String  @id @default(uuid())
-  neighborhood String?
-  numberField  Int?    @map("number")
-  state        String?
-  street       String?
-  title        String?
-  zip          String?
-
-  @@map("Addresses")
-}
-
-model Phone {
-  holder      Holder  @relation(fields: [holder_id], references: [id])
-  holder_id   String
-  id          String  @id @default(uuid())
-  numberField String? @map("number")
-  typeField   String? @map("type")
-
-  @@map("Phones")
-}
-
-model ContactAuthorization {
-  email     Boolean?
-  holder    Holder   @relation(fields: [holder_id], references: [id])
-  holder_id String   @unique
-  id        String   @id @default(uuid())
-  push      Boolean?
-  sms       Boolean?
-}
-
-model Contact {
-  email     String?
-  holder    Holder  @relation(fields: [holder_id], references: [id])
-  holder_id String
-  id        String  @id @default(uuid())
-
-  @@map("Contacts")
-}
-
-model Attachment {
-  files     File[]
-  group     String?
-  holder    Holder  @relation(fields: [holder_id], references: [id])
-  holder_id String
-  id        String  @id @default(uuid())
-
-  @@map("Attachments")
+  addresses              Json?
+  affectionateFirstName  String?
+  affectionateGender     String?
+  affectionateLastName   String?
+  attachments            Json?
+  birthDate              DateTime?
+  contactAuthorizationId String?
+  contacts               Json?
+  documents              Json?
+  editedFields           Json?
+  education              String?
+  filial                 Json?
+  firstName              String?
+  gender                 String?
+  id                     String    @id @default(uuid())
+  lastName               String?
+  maritalStatus          String?
+  password               String
+  phones                 Json?
+  requestId              String
+  socialFirstName        String?
+  socialGender           String?
+  socialLastName         String?
+  socioeconomicInfo      Json?
+  token                  String?
+  typeField              String?   @map("type")
+  username               String    @unique
 }
 
 model File {
-  attachments   Attachment @relation(fields: [attachment_id], references: [id])
-  attachment_id String
+  attachmentsId String
   filename      String?
-  id            String     @id @default(uuid())
+  id            String  @id @default(uuid())
   name          String?
   url           String?
 
@@ -169,105 +48,28 @@ model File {
 }
 
 model Dependent {
-  affectionateFirstName         String?
-  affectionateLastName          String?
-  birthDate                     DateTime?
-  complete                      Boolean?
-  credential                    String?
-  dependentAddresses            DependentAddress[]
-  dependentAttachments          DependentAttachment[]
-  dependentContactAuthorization DependentContactAuthorization?
-  dependentContacts             DependentContact[]
-  dependentDocuments            DependentDocument[]
-  dependentPhones               DependentPhone[]
-  education                     String?
-  exclude                       Boolean?
-  firstName                     String?
-  gender                        String?
-  id                            String                         @id @default(uuid())
-  lastName                      String?
-  maritalStatus                 String?
-  relationship                  String?
-  request                       Request                        @relation(fields: [request_id], references: [id])
-  request_id                    String
-  socialFirstName               String?
-  socialLastName                String?
+  affectionateFirstName           String?
+  affectionateLastName            String?
+  birthDate                       DateTime?
+  complete                        Boolean?
+  credential                      String?
+  dependentAddresses              Json?
+  dependentAttachments            Json?
+  dependentContactAuthorizationId String?
+  dependentContacts               Json?
+  dependentDocuments              Json?
+  dependentPhones                 Json?
+  education                       String?
+  exclude                         Boolean?
+  firstName                       String?
+  gender                          String?
+  id                              String    @id @default(uuid())
+  lastName                        String?
+  maritalStatus                   String?
+  relationship                    String?
+  requestId                       String
+  socialFirstName                 String?
+  socialLastName                  String?
 
   @@map("Dependents")
-}
-
-model DependentDocument {
-  dependents   Dependent @relation(fields: [dependent_id], references: [id])
-  dependent_id String
-  id           String    @id @default(uuid())
-  issuer       String?
-  numberField  String?   @map("number")
-  typeField    String?   @map("type")
-
-  @@map("DependentDocuments")
-}
-
-model DependentAddress {
-  city         String?
-  complement   String?
-  dependents   Dependent @relation(fields: [dependent_id], references: [id])
-  dependent_id String
-  id           String    @id @default(uuid())
-  neighborhood String?
-  numberField  Int?      @map("number")
-  state        String?
-  street       String?
-  title        String?
-  zip          String?
-
-  @@map("DependentAddresses")
-}
-
-model DependentPhone {
-  dependents   Dependent @relation(fields: [dependent_id], references: [id])
-  dependent_id String
-  id           String    @id @default(uuid())
-  numberField  String?   @map("number")
-  typeField    String?   @map("type")
-
-  @@map("DependentPhones")
-}
-
-model DependentContactAuthorization {
-  dependents   Dependent @relation(fields: [dependent_id], references: [id])
-  dependent_id String    @unique
-  email        Boolean?
-  id           String    @id @default(uuid())
-  push         Boolean?
-  sms          Boolean?
-}
-
-model DependentContact {
-  dependents   Dependent @relation(fields: [dependent_id], references: [id])
-  dependent_id String
-  email        String?
-  id           String    @id @default(uuid())
-
-  @@map("DependentContacts")
-}
-
-model DependentAttachment {
-  dependentFiles DependentFile[]
-  dependents     Dependent       @relation(fields: [dependent_id], references: [id])
-  dependent_id   String
-  group          String?
-  id             String          @id @default(uuid())
-
-  @@map("DependentAttachments")
-}
-
-model DependentFile {
-  dependentAttachments DependentAttachment @relation(fields: [attachment_id], references: [id])
-  attachment_id        String
-  filename             String?
-  id                   String              @id @default(uuid())
-  name                 String?
-  url                  String?
-
-  @@map("DependentFiles")
 }
