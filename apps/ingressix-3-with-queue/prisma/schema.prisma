@@ -1,0 +1,211 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  customerCpf        BigInt
+  customerCredential BigInt
+  customerName       String
+  id                 Int     @id @default(autoincrement()) @map("customerId")
+  orders             Order[]
+  users              User[]
+
+  @@map("Customers")
+}
+
+model Category {
+  categoryName String
+  events       Event[]
+  id           Int     @id @default(autoincrement()) @map("categoryId")
+
+  @@map("Categories")
+}
+
+model Unit {
+  events   Event[]
+  id       Int     @id @default(autoincrement()) @map("unitId")
+  unitName String
+
+  @@map("Units")
+}
+
+model Location {
+  events       Event[]
+  id           BigInt  @id @default(autoincrement()) @map("locationId")
+  locationName String
+
+  @@map("Locations")
+}
+
+model Event {
+  categories          Category  @relation(fields: [categoryId], references: [id])
+  categoryId          Int
+  eventClassification String
+  eventDetail         String
+  eventDuration       DateTime
+  eventImage          String
+  eventName           String
+  eventStatus         String
+  id                  Int       @id @default(autoincrement()) @map("eventId")
+  locations           Location  @relation(fields: [locationId], references: [id])
+  locationId          BigInt
+  sessions            Session[]
+  units               Unit      @relation(fields: [unitId], references: [id])
+  unitId              Int
+
+  @@map("Events")
+}
+
+model Session {
+  events           Event           @relation(fields: [eventId], references: [id])
+  eventId          Int
+  id               String          @id @default(cuid()) @map("sessionId")
+  maxTickets       Int
+  orderItems       OrderItem[]
+  orders           Order[]
+  queuePositions   QueuePosition[]
+  remainingTickets Int
+  saleEndDate      DateTime
+  saleStartDate    DateTime
+  sessionDateTime  DateTime
+  sessionStatus    String
+  sessionType      String
+  tickets          Ticket[]
+
+  @@map("Sessions")
+}
+
+model Ticket {
+  cancellationDate DateTime
+  id               Int      @id @default(autoincrement()) @map("ticketId")
+  price            Decimal
+  priceCategory    String
+  priceDescription String
+  qrCode           String
+  returnDeadline   DateTime
+  seatCode         String
+  sessions         Session  @relation(fields: [sessionId], references: [id])
+  sessionId        String
+  ticketStatus     String
+
+  @@map("Tickets")
+}
+
+model OrderItem {
+  id                Int      @id @default(autoincrement()) @map("orderItemId")
+  orderItemDateTime DateTime
+  orders            Order    @relation(fields: [orderId], references: [id])
+  orderId           Int
+  sessions          Session  @relation(fields: [sessionId], references: [id])
+  sessionId         String
+
+  @@map("OrderItems")
+}
+
+model Order {
+  acquisitionChannel    String
+  cancellationDate      DateTime
+  confirmationDate      DateTime
+  creationDate          DateTime
+  customers             Customer         @relation(fields: [customerId], references: [id])
+  customerId            Int
+  id                    Int              @id @default(autoincrement()) @map("orderId")
+  orderItems            OrderItem[]
+  orderStatus           String
+  paymentHistory        PaymentHistory[]
+  paymentMethod         String
+  paymentUuidCrd        String
+  paymentUuidOnPremises String
+  pixCode               String
+  pixExpirationDate     DateTime
+  pixExpirationTime     DateTime
+  sessions              Session          @relation(fields: [sessionId], references: [id])
+  sessionId             String
+
+  @@map("Orders")
+}
+
+model PaymentHistory {
+  id            Int      @id @default(autoincrement()) @map("paymentHistoryId")
+  orders        Order    @relation(fields: [orderId], references: [id])
+  orderId       Int
+  paymentAmount Decimal
+  paymentDate   DateTime
+  paymentMethod String
+  paymentStatus String
+}
+
+model Queue {
+  createdAt      DateTime        @default(now()) @map("created_at")
+  id             String          @id @default(uuid()) @map("queue_id")
+  name           String
+  notifications  Notification[]
+  queueActions   QueueAction[]
+  queueHistories QueueHistory[]
+  queuePositions QueuePosition[]
+  status         String
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+}
+
+model User {
+  customers      Customer?       @relation(fields: [customerId], references: [id])
+  customerId     Int?
+  email          String          @unique
+  id             String          @id @default(uuid()) @map("user_id")
+  notifications  Notification[]
+  queueActions   QueueAction[]
+  queuePositions QueuePosition[]
+  role           String
+  userName       String          @map("user_name")
+
+  @@map("Users")
+}
+
+model QueuePosition {
+  id            String   @id @default(uuid()) @map("queue_position_id")
+  joinedAt      DateTime @default(now()) @map("joined_at")
+  posicaoAtual  Int      @map("posicao_atual")
+  priorityLevel Int      @default(1) @map("priority_level")
+  queues        Queue    @relation(fields: [queue_id], references: [id])
+  queue_id      String
+  sessions      Session? @relation(fields: [sessionId], references: [id])
+  sessionId     String?
+  updatedAt     DateTime @updatedAt @map("updated_at")
+  users         User     @relation(fields: [user_id], references: [id])
+  user_id       String
+}
+
+model QueueAction {
+  actionTimestamp DateTime @default(now()) @map("action_timestamp")
+  actionType      String   @map("action_type")
+  details         String
+  id              String   @id @default(uuid()) @map("action_id")
+  queues          Queue    @relation(fields: [queue_id], references: [id])
+  queue_id        String
+  users           User     @relation(fields: [user_id], references: [id])
+  user_id         String
+}
+
+model QueueHistory {
+  id           String   @id @default(uuid()) @map("history_id")
+  posicaoAtual Int      @map("posicao_atual")
+  queues       Queue    @relation(fields: [queue_id], references: [id])
+  queue_id     String
+  recordedAt   DateTime @default(now()) @map("recorded_at")
+  status       String
+}
+
+model Notification {
+  id       String   @id @default(uuid()) @map("notification_id")
+  message  String
+  queues   Queue    @relation(fields: [queue_id], references: [id])
+  queue_id String
+  sentAt   DateTime @default(now()) @map("sent_at")
+  users    User     @relation(fields: [user_id], references: [id])
+  user_id  String
+}
