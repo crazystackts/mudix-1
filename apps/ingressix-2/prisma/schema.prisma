@@ -1,0 +1,121 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  customerCpf        BigInt
+  customerCredential BigInt
+  customerName       String
+  id                 Int     @id @default(autoincrement()) @map("customerId")
+  orders             Order[]
+}
+
+model Category {
+  categoryName String
+  events       Event[]
+  id           Int     @id @default(autoincrement()) @map("categoryId")
+}
+
+model Unit {
+  events   Event[]
+  id       Int     @id @default(autoincrement()) @map("unitId")
+  unitName String
+}
+
+model Location {
+  events       Event[]
+  id           BigInt  @id @default(autoincrement()) @map("locationId")
+  locationName String
+}
+
+model Event {
+  category            Category  @relation(fields: [categoryId], references: [id])
+  categoryId          Int
+  eventClassification String
+  eventDetail         String?
+  eventDuration       String?
+  eventImage          String?
+  eventName           String
+  eventStatus         String
+  id                  Int       @id @default(autoincrement()) @map("eventId")
+  location            Location  @relation(fields: [locationId], references: [id])
+  locationId          BigInt
+  sessions            Session[]
+  unit                Unit      @relation(fields: [unitId], references: [id])
+  unitId              Int
+}
+
+model Session {
+  event            Event       @relation(fields: [eventId], references: [id])
+  eventId          Int
+  id               String      @id @default(cuid()) @map("sessionId")
+  maxTickets       Int
+  order            Order[]
+  orderItems       OrderItem[]
+  remainingTickets Int
+  saleEndDate      DateTime
+  saleStartDate    DateTime
+  sessionDateTime  DateTime
+  sessionStatus    String
+  sessionType      String
+  tickets          Ticket[]
+}
+
+model Ticket {
+  cancellationDate DateTime?
+  id               Int       @id @default(autoincrement()) @map("ticketId")
+  price            Float
+  priceCategory    String
+  priceDescription String
+  qrCode           String
+  returnDeadline   DateTime?
+  seatCode         String
+  session          Session   @relation(fields: [sessionId], references: [id])
+  sessionId        String
+  ticketStatus     String
+}
+
+model OrderItem {
+  id                Int      @id @default(autoincrement()) @map("orderItemId")
+  order             Order    @relation(fields: [orderId], references: [id])
+  orderId           Int
+  orderItemDateTime DateTime
+  session           Session  @relation(fields: [sessionId], references: [id])
+  sessionId         String
+}
+
+model Order {
+  acquisitionChannel    String
+  cancellationDate      DateTime?
+  confirmationDate      DateTime?
+  creationDate          DateTime
+  customer              Customer         @relation(fields: [customerId], references: [id])
+  customerId            Int
+  id                    Int              @id @default(autoincrement()) @map("orderId")
+  orderItems            OrderItem[]
+  orderStatus           String?
+  paymentHistory        PaymentHistory[]
+  paymentMethod         String
+  paymentUuidCrd        String?
+  paymentUuidOnPremises String?
+  pixCode               String?
+  pixExpirationDate     DateTime?
+  pixExpirationTime     String?
+  session               Session          @relation(fields: [sessionId], references: [id])
+  sessionId             String
+}
+
+model PaymentHistory {
+  id            Int      @id @default(autoincrement()) @map("paymentHistoryId")
+  order         Order    @relation(fields: [orderId], references: [id])
+  orderId       Int
+  paymentAmount Float
+  paymentDate   DateTime
+  paymentMethod String
+  paymentStatus String
+}
