@@ -11,19 +11,17 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { Attachment } from "../../attachment/base/Attachment";
-import { ValidateNested, IsString, IsOptional } from "class-validator";
-import { Type } from "class-transformer";
+import { IsString, IsOptional } from "class-validator";
 
 @ObjectType()
 class File {
   @ApiProperty({
     required: true,
-    type: () => Attachment,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Attachment)
-  attachments?: Attachment;
+  @IsString()
+  @Field(() => String)
+  attachmentsId!: string;
 
   @ApiProperty({
     required: false,

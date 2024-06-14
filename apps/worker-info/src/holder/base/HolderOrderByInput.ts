@@ -28,6 +28,17 @@ class HolderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  addresses?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   affectionateFirstName?: SortOrder;
 
   @ApiProperty({
@@ -61,6 +72,17 @@ class HolderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  attachments?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   birthDate?: SortOrder;
 
   @ApiProperty({
@@ -83,7 +105,51 @@ class HolderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  contacts?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  documents?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  editedFields?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   education?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  filial?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -160,7 +226,18 @@ class HolderOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  request_id?: SortOrder;
+  phones?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  requestId?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -194,6 +271,17 @@ class HolderOrderByInput {
     nullable: true,
   })
   socialLastName?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @IsOptional()
+  @IsEnum(SortOrder)
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  socioeconomicInfo?: SortOrder;
 
   @ApiProperty({
     required: false,

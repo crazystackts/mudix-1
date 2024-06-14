@@ -18,12 +18,14 @@ import { FileService } from "../file.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  attachmentsId: "exampleAttachmentsId",
   filename: "exampleFilename",
   id: "exampleId",
   name: "exampleName",
   url: "exampleUrl",
 };
 const CREATE_RESULT = {
+  attachmentsId: "exampleAttachmentsId",
   filename: "exampleFilename",
   id: "exampleId",
   name: "exampleName",
@@ -31,6 +33,7 @@ const CREATE_RESULT = {
 };
 const FIND_MANY_RESULT = [
   {
+    attachmentsId: "exampleAttachmentsId",
     filename: "exampleFilename",
     id: "exampleId",
     name: "exampleName",
@@ -38,6 +41,7 @@ const FIND_MANY_RESULT = [
   },
 ];
 const FIND_ONE_RESULT = {
+  attachmentsId: "exampleAttachmentsId",
   filename: "exampleFilename",
   id: "exampleId",
   name: "exampleName",

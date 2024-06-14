@@ -1,10 +1,4 @@
-import { DependentAddressUpdateManyWithoutDependentsInput } from "./DependentAddressUpdateManyWithoutDependentsInput";
-import { DependentAttachmentUpdateManyWithoutDependentsInput } from "./DependentAttachmentUpdateManyWithoutDependentsInput";
-import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
-import { DependentContactUpdateManyWithoutDependentsInput } from "./DependentContactUpdateManyWithoutDependentsInput";
-import { DependentDocumentUpdateManyWithoutDependentsInput } from "./DependentDocumentUpdateManyWithoutDependentsInput";
-import { DependentPhoneUpdateManyWithoutDependentsInput } from "./DependentPhoneUpdateManyWithoutDependentsInput";
-import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+import { InputJsonValue } from "../../types";
 
 export type DependentUpdateInput = {
   affectionateFirstName?: string | null;
@@ -12,12 +6,12 @@ export type DependentUpdateInput = {
   birthDate?: Date | null;
   complete?: boolean | null;
   credential?: string | null;
-  dependentAddresses?: DependentAddressUpdateManyWithoutDependentsInput;
-  dependentAttachments?: DependentAttachmentUpdateManyWithoutDependentsInput;
-  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput | null;
-  dependentContacts?: DependentContactUpdateManyWithoutDependentsInput;
-  dependentDocuments?: DependentDocumentUpdateManyWithoutDependentsInput;
-  dependentPhones?: DependentPhoneUpdateManyWithoutDependentsInput;
+  dependentAddresses?: InputJsonValue;
+  dependentAttachments?: InputJsonValue;
+  dependentContactAuthorizationId?: string | null;
+  dependentContacts?: InputJsonValue;
+  dependentDocuments?: InputJsonValue;
+  dependentPhones?: InputJsonValue;
   education?: string | null;
   exclude?: boolean | null;
   firstName?: string | null;
@@ -25,7 +19,7 @@ export type DependentUpdateInput = {
   lastName?: string | null;
   maritalStatus?: string | null;
   relationship?: string | null;
-  request?: RequestWhereUniqueInput;
+  requestId?: string;
   socialFirstName?: string | null;
   socialLastName?: string | null;
 };

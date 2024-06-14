@@ -11,32 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AddressUpdateManyWithoutHoldersInput } from "./AddressUpdateManyWithoutHoldersInput";
-import { ValidateNested, IsOptional, IsString, IsDate } from "class-validator";
+import { IsJSONValue } from "../../validators";
+import { IsOptional, IsString, IsDate } from "class-validator";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { Type } from "class-transformer";
-import { AttachmentUpdateManyWithoutHoldersInput } from "./AttachmentUpdateManyWithoutHoldersInput";
-import { ContactAuthorizationWhereUniqueInput } from "../../contactAuthorization/base/ContactAuthorizationWhereUniqueInput";
-import { ContactUpdateManyWithoutHoldersInput } from "./ContactUpdateManyWithoutHoldersInput";
-import { DocumentUpdateManyWithoutHoldersInput } from "./DocumentUpdateManyWithoutHoldersInput";
-import { EditedFieldUpdateManyWithoutHoldersInput } from "./EditedFieldUpdateManyWithoutHoldersInput";
-import { FilialUpdateManyWithoutHoldersInput } from "./FilialUpdateManyWithoutHoldersInput";
-import { PhoneUpdateManyWithoutHoldersInput } from "./PhoneUpdateManyWithoutHoldersInput";
-import { RequestWhereUniqueInput } from "../../request/base/RequestWhereUniqueInput";
-import { SocioeconomicInfoUpdateManyWithoutHoldersInput } from "./SocioeconomicInfoUpdateManyWithoutHoldersInput";
 
 @InputType()
 class HolderUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => AddressUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => AddressUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => AddressUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  addresses?: AddressUpdateManyWithoutHoldersInput;
+  addresses?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -73,15 +64,13 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => AttachmentUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => AttachmentUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => AttachmentUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  attachments?: AttachmentUpdateManyWithoutHoldersInput;
+  attachments?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -96,51 +85,44 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ContactAuthorizationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ContactAuthorizationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ContactAuthorizationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  contactAuthorization?: ContactAuthorizationWhereUniqueInput | null;
+  contactAuthorizationId?: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => ContactUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => ContactUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => ContactUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  contacts?: ContactUpdateManyWithoutHoldersInput;
+  contacts?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DocumentUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => DocumentUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DocumentUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  documents?: DocumentUpdateManyWithoutHoldersInput;
+  documents?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => EditedFieldUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => EditedFieldUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => EditedFieldUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  editedFields?: EditedFieldUpdateManyWithoutHoldersInput;
+  editedFields?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -155,15 +137,13 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => FilialUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => FilialUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => FilialUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  filial?: FilialUpdateManyWithoutHoldersInput;
+  filial?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -222,27 +202,24 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => PhoneUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => PhoneUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => PhoneUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  phones?: PhoneUpdateManyWithoutHoldersInput;
+  phones?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => RequestWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => RequestWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => RequestWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  request?: RequestWhereUniqueInput;
+  requestId?: string;
 
   @ApiProperty({
     required: false,
@@ -279,15 +256,13 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => SocioeconomicInfoUpdateManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => SocioeconomicInfoUpdateManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => SocioeconomicInfoUpdateManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  socioeconomicInfo?: SocioeconomicInfoUpdateManyWithoutHoldersInput;
+  socioeconomicInfo?: InputJsonValue;
 
   @ApiProperty({
     required: false,

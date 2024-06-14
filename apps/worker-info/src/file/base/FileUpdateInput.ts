@@ -11,23 +11,20 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AttachmentWhereUniqueInput } from "../../attachment/base/AttachmentWhereUniqueInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
-import { Type } from "class-transformer";
+import { IsString, IsOptional } from "class-validator";
 
 @InputType()
 class FileUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => AttachmentWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => AttachmentWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => AttachmentWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  attachments?: AttachmentWhereUniqueInput;
+  attachmentsId?: string;
 
   @ApiProperty({
     required: false,

@@ -13,17 +13,11 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
+import { IsOptional } from "class-validator";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
-import { DependentAddressListRelationFilter } from "../../dependentAddress/base/DependentAddressListRelationFilter";
-import { DependentAttachmentListRelationFilter } from "../../dependentAttachment/base/DependentAttachmentListRelationFilter";
-import { DependentContactAuthorizationWhereUniqueInput } from "../../dependentContactAuthorization/base/DependentContactAuthorizationWhereUniqueInput";
-import { DependentContactListRelationFilter } from "../../dependentContact/base/DependentContactListRelationFilter";
-import { DependentDocumentListRelationFilter } from "../../dependentDocument/base/DependentDocumentListRelationFilter";
-import { DependentPhoneListRelationFilter } from "../../dependentPhone/base/DependentPhoneListRelationFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { RequestWhereUniqueInput } from "../../request/base/RequestWhereUniqueInput";
 
 @InputType()
 class DependentWhereInput {
@@ -84,75 +78,69 @@ class DependentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => DependentAddressListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentAddressListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DependentAddressListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  dependentAddresses?: DependentAddressListRelationFilter;
+  dependentAddresses?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DependentAttachmentListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentAttachmentListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DependentAttachmentListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  dependentAttachments?: DependentAttachmentListRelationFilter;
+  dependentAttachments?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DependentContactAuthorizationWhereUniqueInput,
+    type: StringNullableFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentContactAuthorizationWhereUniqueInput)
+  @Type(() => StringNullableFilter)
   @IsOptional()
-  @Field(() => DependentContactAuthorizationWhereUniqueInput, {
+  @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput;
+  dependentContactAuthorizationId?: StringNullableFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DependentContactListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentContactListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DependentContactListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  dependentContacts?: DependentContactListRelationFilter;
+  dependentContacts?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DependentDocumentListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentDocumentListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DependentDocumentListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  dependentDocuments?: DependentDocumentListRelationFilter;
+  dependentDocuments?: JsonFilter;
 
   @ApiProperty({
     required: false,
-    type: () => DependentPhoneListRelationFilter,
+    type: JsonFilter,
   })
-  @ValidateNested()
-  @Type(() => DependentPhoneListRelationFilter)
+  @Type(() => JsonFilter)
   @IsOptional()
-  @Field(() => DependentPhoneListRelationFilter, {
+  @Field(() => JsonFilter, {
     nullable: true,
   })
-  dependentPhones?: DependentPhoneListRelationFilter;
+  dependentPhones?: JsonFilter;
 
   @ApiProperty({
     required: false,
@@ -244,15 +232,14 @@ class DependentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => RequestWhereUniqueInput,
+    type: StringFilter,
   })
-  @ValidateNested()
-  @Type(() => RequestWhereUniqueInput)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => RequestWhereUniqueInput, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  request?: RequestWhereUniqueInput;
+  requestId?: StringFilter;
 
   @ApiProperty({
     required: false,

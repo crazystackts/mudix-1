@@ -1,10 +1,4 @@
-import { DependentAddressCreateNestedManyWithoutDependentsInput } from "./DependentAddressCreateNestedManyWithoutDependentsInput";
-import { DependentAttachmentCreateNestedManyWithoutDependentsInput } from "./DependentAttachmentCreateNestedManyWithoutDependentsInput";
-import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
-import { DependentContactCreateNestedManyWithoutDependentsInput } from "./DependentContactCreateNestedManyWithoutDependentsInput";
-import { DependentDocumentCreateNestedManyWithoutDependentsInput } from "./DependentDocumentCreateNestedManyWithoutDependentsInput";
-import { DependentPhoneCreateNestedManyWithoutDependentsInput } from "./DependentPhoneCreateNestedManyWithoutDependentsInput";
-import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+import { InputJsonValue } from "../../types";
 
 export type DependentCreateInput = {
   affectionateFirstName?: string | null;
@@ -12,12 +6,12 @@ export type DependentCreateInput = {
   birthDate?: Date | null;
   complete?: boolean | null;
   credential?: string | null;
-  dependentAddresses?: DependentAddressCreateNestedManyWithoutDependentsInput;
-  dependentAttachments?: DependentAttachmentCreateNestedManyWithoutDependentsInput;
-  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput | null;
-  dependentContacts?: DependentContactCreateNestedManyWithoutDependentsInput;
-  dependentDocuments?: DependentDocumentCreateNestedManyWithoutDependentsInput;
-  dependentPhones?: DependentPhoneCreateNestedManyWithoutDependentsInput;
+  dependentAddresses?: InputJsonValue;
+  dependentAttachments?: InputJsonValue;
+  dependentContactAuthorizationId?: string | null;
+  dependentContacts?: InputJsonValue;
+  dependentDocuments?: InputJsonValue;
+  dependentPhones?: InputJsonValue;
   education?: string | null;
   exclude?: boolean | null;
   firstName?: string | null;
@@ -25,7 +19,7 @@ export type DependentCreateInput = {
   lastName?: string | null;
   maritalStatus?: string | null;
   relationship?: string | null;
-  request: RequestWhereUniqueInput;
+  requestId: string;
   socialFirstName?: string | null;
   socialLastName?: string | null;
 };

@@ -1,22 +1,30 @@
 import { SortOrder } from "../../util/SortOrder";
 
 export type HolderOrderByInput = {
+  addresses?: SortOrder;
   affectionateFirstName?: SortOrder;
   affectionateGender?: SortOrder;
   affectionateLastName?: SortOrder;
+  attachments?: SortOrder;
   birthDate?: SortOrder;
   contactAuthorizationId?: SortOrder;
+  contacts?: SortOrder;
+  documents?: SortOrder;
+  editedFields?: SortOrder;
   education?: SortOrder;
+  filial?: SortOrder;
   firstName?: SortOrder;
   gender?: SortOrder;
   id?: SortOrder;
   lastName?: SortOrder;
   maritalStatus?: SortOrder;
   password?: SortOrder;
-  request_id?: SortOrder;
+  phones?: SortOrder;
+  requestId?: SortOrder;
   socialFirstName?: SortOrder;
   socialGender?: SortOrder;
   socialLastName?: SortOrder;
+  socioeconomicInfo?: SortOrder;
   token?: SortOrder;
   typeField?: SortOrder;
   username?: SortOrder;

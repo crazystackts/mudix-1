@@ -19,25 +19,9 @@ import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { DependentService } from "../dependent.service";
 import { DependentCreateInput } from "./DependentCreateInput";
 import { Dependent } from "./Dependent";
-import { Request } from "../../request/base/Request";
 import { DependentFindManyArgs } from "./DependentFindManyArgs";
 import { DependentWhereUniqueInput } from "./DependentWhereUniqueInput";
 import { DependentUpdateInput } from "./DependentUpdateInput";
-import { DependentAddressFindManyArgs } from "../../dependentAddress/base/DependentAddressFindManyArgs";
-import { DependentAddress } from "../../dependentAddress/base/DependentAddress";
-import { DependentAddressWhereUniqueInput } from "../../dependentAddress/base/DependentAddressWhereUniqueInput";
-import { DependentAttachmentFindManyArgs } from "../../dependentAttachment/base/DependentAttachmentFindManyArgs";
-import { DependentAttachment } from "../../dependentAttachment/base/DependentAttachment";
-import { DependentAttachmentWhereUniqueInput } from "../../dependentAttachment/base/DependentAttachmentWhereUniqueInput";
-import { DependentContactFindManyArgs } from "../../dependentContact/base/DependentContactFindManyArgs";
-import { DependentContact } from "../../dependentContact/base/DependentContact";
-import { DependentContactWhereUniqueInput } from "../../dependentContact/base/DependentContactWhereUniqueInput";
-import { DependentDocumentFindManyArgs } from "../../dependentDocument/base/DependentDocumentFindManyArgs";
-import { DependentDocument } from "../../dependentDocument/base/DependentDocument";
-import { DependentDocumentWhereUniqueInput } from "../../dependentDocument/base/DependentDocumentWhereUniqueInput";
-import { DependentPhoneFindManyArgs } from "../../dependentPhone/base/DependentPhoneFindManyArgs";
-import { DependentPhone } from "../../dependentPhone/base/DependentPhone";
-import { DependentPhoneWhereUniqueInput } from "../../dependentPhone/base/DependentPhoneWhereUniqueInput";
 
 export class DependentControllerBase {
   constructor(protected readonly service: DependentService) {}
@@ -47,32 +31,19 @@ export class DependentControllerBase {
     @common.Body() data: DependentCreateInput
   ): Promise<Dependent> {
     return await this.service.createDependent({
-      data: {
-        ...data,
-
-        dependentContactAuthorization: data.dependentContactAuthorization
-          ? {
-              connect: data.dependentContactAuthorization,
-            }
-          : undefined,
-
-        request: {
-          connect: data.request,
-        },
-      },
+      data: data,
       select: {
         affectionateFirstName: true,
         affectionateLastName: true,
         birthDate: true,
         complete: true,
         credential: true,
-
-        dependentContactAuthorization: {
-          select: {
-            id: true,
-          },
-        },
-
+        dependentAddresses: true,
+        dependentAttachments: true,
+        dependentContactAuthorizationId: true,
+        dependentContacts: true,
+        dependentDocuments: true,
+        dependentPhones: true,
         education: true,
         exclude: true,
         firstName: true,
@@ -81,13 +52,7 @@ export class DependentControllerBase {
         lastName: true,
         maritalStatus: true,
         relationship: true,
-
-        request: {
-          select: {
-            id: true,
-          },
-        },
-
+        requestId: true,
         socialFirstName: true,
         socialLastName: true,
       },
@@ -107,13 +72,12 @@ export class DependentControllerBase {
         birthDate: true,
         complete: true,
         credential: true,
-
-        dependentContactAuthorization: {
-          select: {
-            id: true,
-          },
-        },
-
+        dependentAddresses: true,
+        dependentAttachments: true,
+        dependentContactAuthorizationId: true,
+        dependentContacts: true,
+        dependentDocuments: true,
+        dependentPhones: true,
         education: true,
         exclude: true,
         firstName: true,
@@ -122,13 +86,7 @@ export class DependentControllerBase {
         lastName: true,
         maritalStatus: true,
         relationship: true,
-
-        request: {
-          select: {
-            id: true,
-          },
-        },
-
+        requestId: true,
         socialFirstName: true,
         socialLastName: true,
       },
@@ -149,13 +107,12 @@ export class DependentControllerBase {
         birthDate: true,
         complete: true,
         credential: true,
-
-        dependentContactAuthorization: {
-          select: {
-            id: true,
-          },
-        },
-
+        dependentAddresses: true,
+        dependentAttachments: true,
+        dependentContactAuthorizationId: true,
+        dependentContacts: true,
+        dependentDocuments: true,
+        dependentPhones: true,
         education: true,
         exclude: true,
         firstName: true,
@@ -164,13 +121,7 @@ export class DependentControllerBase {
         lastName: true,
         maritalStatus: true,
         relationship: true,
-
-        request: {
-          select: {
-            id: true,
-          },
-        },
-
+        requestId: true,
         socialFirstName: true,
         socialLastName: true,
       },
@@ -193,32 +144,19 @@ export class DependentControllerBase {
     try {
       return await this.service.updateDependent({
         where: params,
-        data: {
-          ...data,
-
-          dependentContactAuthorization: data.dependentContactAuthorization
-            ? {
-                connect: data.dependentContactAuthorization,
-              }
-            : undefined,
-
-          request: {
-            connect: data.request,
-          },
-        },
+        data: data,
         select: {
           affectionateFirstName: true,
           affectionateLastName: true,
           birthDate: true,
           complete: true,
           credential: true,
-
-          dependentContactAuthorization: {
-            select: {
-              id: true,
-            },
-          },
-
+          dependentAddresses: true,
+          dependentAttachments: true,
+          dependentContactAuthorizationId: true,
+          dependentContacts: true,
+          dependentDocuments: true,
+          dependentPhones: true,
           education: true,
           exclude: true,
           firstName: true,
@@ -227,13 +165,7 @@ export class DependentControllerBase {
           lastName: true,
           maritalStatus: true,
           relationship: true,
-
-          request: {
-            select: {
-              id: true,
-            },
-          },
-
+          requestId: true,
           socialFirstName: true,
           socialLastName: true,
         },
@@ -263,13 +195,12 @@ export class DependentControllerBase {
           birthDate: true,
           complete: true,
           credential: true,
-
-          dependentContactAuthorization: {
-            select: {
-              id: true,
-            },
-          },
-
+          dependentAddresses: true,
+          dependentAttachments: true,
+          dependentContactAuthorizationId: true,
+          dependentContacts: true,
+          dependentDocuments: true,
+          dependentPhones: true,
           education: true,
           exclude: true,
           firstName: true,
@@ -278,13 +209,7 @@ export class DependentControllerBase {
           lastName: true,
           maritalStatus: true,
           relationship: true,
-
-          request: {
-            select: {
-              id: true,
-            },
-          },
-
+          requestId: true,
           socialFirstName: true,
           socialLastName: true,
         },
@@ -297,411 +222,5 @@ export class DependentControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.Get("/:id/dependentAddresses")
-  @ApiNestedQuery(DependentAddressFindManyArgs)
-  async findDependentAddresses(
-    @common.Req() request: Request,
-    @common.Param() params: DependentWhereUniqueInput
-  ): Promise<DependentAddress[]> {
-    const query = plainToClass(DependentAddressFindManyArgs, request.query);
-    const results = await this.service.findDependentAddresses(params.id, {
-      ...query,
-      select: {
-        city: true,
-        complement: true,
-
-        dependents: {
-          select: {
-            id: true,
-          },
-        },
-
-        id: true,
-        neighborhood: true,
-        numberField: true,
-        state: true,
-        street: true,
-        title: true,
-        zip: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/dependentAddresses")
-  async connectDependentAddresses(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAddressWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAddresses: {
-        connect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/dependentAddresses")
-  async updateDependentAddresses(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAddressWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAddresses: {
-        set: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/dependentAddresses")
-  async disconnectDependentAddresses(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAddressWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAddresses: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Get("/:id/dependentAttachments")
-  @ApiNestedQuery(DependentAttachmentFindManyArgs)
-  async findDependentAttachments(
-    @common.Req() request: Request,
-    @common.Param() params: DependentWhereUniqueInput
-  ): Promise<DependentAttachment[]> {
-    const query = plainToClass(DependentAttachmentFindManyArgs, request.query);
-    const results = await this.service.findDependentAttachments(params.id, {
-      ...query,
-      select: {
-        dependents: {
-          select: {
-            id: true,
-          },
-        },
-
-        group: true,
-        id: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/dependentAttachments")
-  async connectDependentAttachments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAttachmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAttachments: {
-        connect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/dependentAttachments")
-  async updateDependentAttachments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAttachmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAttachments: {
-        set: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/dependentAttachments")
-  async disconnectDependentAttachments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentAttachmentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentAttachments: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Get("/:id/dependentContacts")
-  @ApiNestedQuery(DependentContactFindManyArgs)
-  async findDependentContacts(
-    @common.Req() request: Request,
-    @common.Param() params: DependentWhereUniqueInput
-  ): Promise<DependentContact[]> {
-    const query = plainToClass(DependentContactFindManyArgs, request.query);
-    const results = await this.service.findDependentContacts(params.id, {
-      ...query,
-      select: {
-        dependents: {
-          select: {
-            id: true,
-          },
-        },
-
-        email: true,
-        id: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/dependentContacts")
-  async connectDependentContacts(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentContactWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentContacts: {
-        connect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/dependentContacts")
-  async updateDependentContacts(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentContactWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentContacts: {
-        set: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/dependentContacts")
-  async disconnectDependentContacts(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentContactWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentContacts: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Get("/:id/dependentDocuments")
-  @ApiNestedQuery(DependentDocumentFindManyArgs)
-  async findDependentDocuments(
-    @common.Req() request: Request,
-    @common.Param() params: DependentWhereUniqueInput
-  ): Promise<DependentDocument[]> {
-    const query = plainToClass(DependentDocumentFindManyArgs, request.query);
-    const results = await this.service.findDependentDocuments(params.id, {
-      ...query,
-      select: {
-        dependents: {
-          select: {
-            id: true,
-          },
-        },
-
-        id: true,
-        issuer: true,
-        numberField: true,
-        typeField: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/dependentDocuments")
-  async connectDependentDocuments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentDocumentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentDocuments: {
-        connect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/dependentDocuments")
-  async updateDependentDocuments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentDocumentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentDocuments: {
-        set: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/dependentDocuments")
-  async disconnectDependentDocuments(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentDocumentWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentDocuments: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Get("/:id/dependentPhones")
-  @ApiNestedQuery(DependentPhoneFindManyArgs)
-  async findDependentPhones(
-    @common.Req() request: Request,
-    @common.Param() params: DependentWhereUniqueInput
-  ): Promise<DependentPhone[]> {
-    const query = plainToClass(DependentPhoneFindManyArgs, request.query);
-    const results = await this.service.findDependentPhones(params.id, {
-      ...query,
-      select: {
-        dependents: {
-          select: {
-            id: true,
-          },
-        },
-
-        id: true,
-        numberField: true,
-        typeField: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/dependentPhones")
-  async connectDependentPhones(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentPhoneWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentPhones: {
-        connect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/dependentPhones")
-  async updateDependentPhones(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentPhoneWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentPhones: {
-        set: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/dependentPhones")
-  async disconnectDependentPhones(
-    @common.Param() params: DependentWhereUniqueInput,
-    @common.Body() body: DependentPhoneWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      dependentPhones: {
-        disconnect: body,
-      },
-    };
-    await this.service.updateDependent({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

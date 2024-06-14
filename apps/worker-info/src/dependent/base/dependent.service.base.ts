@@ -10,18 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
-import {
-  Prisma,
-  Dependent as PrismaDependent,
-  DependentAddress as PrismaDependentAddress,
-  DependentAttachment as PrismaDependentAttachment,
-  DependentContact as PrismaDependentContact,
-  DependentDocument as PrismaDependentDocument,
-  DependentPhone as PrismaDependentPhone,
-  DependentContactAuthorization as PrismaDependentContactAuthorization,
-  Request as PrismaRequest,
-} from "@prisma/client";
+import { Prisma, Dependent as PrismaDependent } from "@prisma/client";
 
 export class DependentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -56,78 +45,5 @@ export class DependentServiceBase {
     args: Prisma.SelectSubset<T, Prisma.DependentDeleteArgs>
   ): Promise<PrismaDependent> {
     return this.prisma.dependent.delete(args);
-  }
-
-  async findDependentAddresses(
-    parentId: string,
-    args: Prisma.DependentAddressFindManyArgs
-  ): Promise<PrismaDependentAddress[]> {
-    return this.prisma.dependent
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .dependentAddresses(args);
-  }
-
-  async findDependentAttachments(
-    parentId: string,
-    args: Prisma.DependentAttachmentFindManyArgs
-  ): Promise<PrismaDependentAttachment[]> {
-    return this.prisma.dependent
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .dependentAttachments(args);
-  }
-
-  async findDependentContacts(
-    parentId: string,
-    args: Prisma.DependentContactFindManyArgs
-  ): Promise<PrismaDependentContact[]> {
-    return this.prisma.dependent
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .dependentContacts(args);
-  }
-
-  async findDependentDocuments(
-    parentId: string,
-    args: Prisma.DependentDocumentFindManyArgs
-  ): Promise<PrismaDependentDocument[]> {
-    return this.prisma.dependent
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .dependentDocuments(args);
-  }
-
-  async findDependentPhones(
-    parentId: string,
-    args: Prisma.DependentPhoneFindManyArgs
-  ): Promise<PrismaDependentPhone[]> {
-    return this.prisma.dependent
-      .findUniqueOrThrow({
-        where: { id: parentId },
-      })
-      .dependentPhones(args);
-  }
-
-  async getDependentContactAuthorization(
-    parentId: string
-  ): Promise<PrismaDependentContactAuthorization | null> {
-    return this.prisma.dependent
-      .findUnique({
-        where: { id: parentId },
-      })
-      .dependentContactAuthorization();
-  }
-
-  async getRequest(parentId: string): Promise<PrismaRequest | null> {
-    return this.prisma.dependent
-      .findUnique({
-        where: { id: parentId },
-      })
-      .request();
   }
 }

@@ -11,32 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { AddressCreateNestedManyWithoutHoldersInput } from "./AddressCreateNestedManyWithoutHoldersInput";
-import { ValidateNested, IsOptional, IsString, IsDate } from "class-validator";
+import { IsJSONValue } from "../../validators";
+import { IsOptional, IsString, IsDate } from "class-validator";
+import { GraphQLJSON } from "graphql-type-json";
+import { InputJsonValue } from "../../types";
 import { Type } from "class-transformer";
-import { AttachmentCreateNestedManyWithoutHoldersInput } from "./AttachmentCreateNestedManyWithoutHoldersInput";
-import { ContactAuthorizationWhereUniqueInput } from "../../contactAuthorization/base/ContactAuthorizationWhereUniqueInput";
-import { ContactCreateNestedManyWithoutHoldersInput } from "./ContactCreateNestedManyWithoutHoldersInput";
-import { DocumentCreateNestedManyWithoutHoldersInput } from "./DocumentCreateNestedManyWithoutHoldersInput";
-import { EditedFieldCreateNestedManyWithoutHoldersInput } from "./EditedFieldCreateNestedManyWithoutHoldersInput";
-import { FilialCreateNestedManyWithoutHoldersInput } from "./FilialCreateNestedManyWithoutHoldersInput";
-import { PhoneCreateNestedManyWithoutHoldersInput } from "./PhoneCreateNestedManyWithoutHoldersInput";
-import { RequestWhereUniqueInput } from "../../request/base/RequestWhereUniqueInput";
-import { SocioeconomicInfoCreateNestedManyWithoutHoldersInput } from "./SocioeconomicInfoCreateNestedManyWithoutHoldersInput";
 
 @InputType()
 class HolderCreateInput {
   @ApiProperty({
     required: false,
-    type: () => AddressCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => AddressCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => AddressCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  addresses?: AddressCreateNestedManyWithoutHoldersInput;
+  addresses?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -73,15 +64,13 @@ class HolderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => AttachmentCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => AttachmentCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => AttachmentCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  attachments?: AttachmentCreateNestedManyWithoutHoldersInput;
+  attachments?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -96,51 +85,44 @@ class HolderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ContactAuthorizationWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ContactAuthorizationWhereUniqueInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ContactAuthorizationWhereUniqueInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  contactAuthorization?: ContactAuthorizationWhereUniqueInput | null;
+  contactAuthorizationId?: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => ContactCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => ContactCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => ContactCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  contacts?: ContactCreateNestedManyWithoutHoldersInput;
+  contacts?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => DocumentCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => DocumentCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => DocumentCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  documents?: DocumentCreateNestedManyWithoutHoldersInput;
+  documents?: InputJsonValue;
 
   @ApiProperty({
     required: false,
-    type: () => EditedFieldCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => EditedFieldCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => EditedFieldCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  editedFields?: EditedFieldCreateNestedManyWithoutHoldersInput;
+  editedFields?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -155,15 +137,13 @@ class HolderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => FilialCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => FilialCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => FilialCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  filial?: FilialCreateNestedManyWithoutHoldersInput;
+  filial?: InputJsonValue;
 
   @ApiProperty({
     required: false,
@@ -219,24 +199,21 @@ class HolderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => PhoneCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => PhoneCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => PhoneCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  phones?: PhoneCreateNestedManyWithoutHoldersInput;
+  phones?: InputJsonValue;
 
   @ApiProperty({
     required: true,
-    type: () => RequestWhereUniqueInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => RequestWhereUniqueInput)
-  @Field(() => RequestWhereUniqueInput)
-  request!: RequestWhereUniqueInput;
+  @IsString()
+  @Field(() => String)
+  requestId!: string;
 
   @ApiProperty({
     required: false,
@@ -273,15 +250,13 @@ class HolderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => SocioeconomicInfoCreateNestedManyWithoutHoldersInput,
   })
-  @ValidateNested()
-  @Type(() => SocioeconomicInfoCreateNestedManyWithoutHoldersInput)
+  @IsJSONValue()
   @IsOptional()
-  @Field(() => SocioeconomicInfoCreateNestedManyWithoutHoldersInput, {
+  @Field(() => GraphQLJSON, {
     nullable: true,
   })
-  socioeconomicInfo?: SocioeconomicInfoCreateNestedManyWithoutHoldersInput;
+  socioeconomicInfo?: InputJsonValue;
 
   @ApiProperty({
     required: false,

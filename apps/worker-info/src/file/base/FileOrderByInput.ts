@@ -28,7 +28,7 @@ class FileOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  attachment_id?: SortOrder;
+  attachmentsId?: SortOrder;
 
   @ApiProperty({
     required: false,

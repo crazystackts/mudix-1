@@ -1,14 +1,8 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
-import { DependentAddressListRelationFilter } from "../dependentAddress/DependentAddressListRelationFilter";
-import { DependentAttachmentListRelationFilter } from "../dependentAttachment/DependentAttachmentListRelationFilter";
-import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
-import { DependentContactListRelationFilter } from "../dependentContact/DependentContactListRelationFilter";
-import { DependentDocumentListRelationFilter } from "../dependentDocument/DependentDocumentListRelationFilter";
-import { DependentPhoneListRelationFilter } from "../dependentPhone/DependentPhoneListRelationFilter";
+import { JsonFilter } from "../../util/JsonFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
 
 export type DependentWhereInput = {
   affectionateFirstName?: StringNullableFilter;
@@ -16,12 +10,12 @@ export type DependentWhereInput = {
   birthDate?: DateTimeNullableFilter;
   complete?: BooleanNullableFilter;
   credential?: StringNullableFilter;
-  dependentAddresses?: DependentAddressListRelationFilter;
-  dependentAttachments?: DependentAttachmentListRelationFilter;
-  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput;
-  dependentContacts?: DependentContactListRelationFilter;
-  dependentDocuments?: DependentDocumentListRelationFilter;
-  dependentPhones?: DependentPhoneListRelationFilter;
+  dependentAddresses?: JsonFilter;
+  dependentAttachments?: JsonFilter;
+  dependentContactAuthorizationId?: StringNullableFilter;
+  dependentContacts?: JsonFilter;
+  dependentDocuments?: JsonFilter;
+  dependentPhones?: JsonFilter;
   education?: StringNullableFilter;
   exclude?: BooleanNullableFilter;
   firstName?: StringNullableFilter;
@@ -30,7 +24,7 @@ export type DependentWhereInput = {
   lastName?: StringNullableFilter;
   maritalStatus?: StringNullableFilter;
   relationship?: StringNullableFilter;
-  request?: RequestWhereUniqueInput;
+  requestId?: StringFilter;
   socialFirstName?: StringNullableFilter;
   socialLastName?: StringNullableFilter;
 };

@@ -19,7 +19,6 @@ import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { FileService } from "../file.service";
 import { FileCreateInput } from "./FileCreateInput";
 import { File } from "./File";
-import { Request } from "../../request/base/Request";
 import { FileFindManyArgs } from "./FileFindManyArgs";
 import { FileWhereUniqueInput } from "./FileWhereUniqueInput";
 import { FileUpdateInput } from "./FileUpdateInput";
@@ -30,20 +29,9 @@ export class FileControllerBase {
   @swagger.ApiCreatedResponse({ type: File })
   async createFile(@common.Body() data: FileCreateInput): Promise<File> {
     return await this.service.createFile({
-      data: {
-        ...data,
-
-        attachments: {
-          connect: data.attachments,
-        },
-      },
+      data: data,
       select: {
-        attachments: {
-          select: {
-            id: true,
-          },
-        },
-
+        attachmentsId: true,
         filename: true,
         id: true,
         name: true,
@@ -60,12 +48,7 @@ export class FileControllerBase {
     return this.service.files({
       ...args,
       select: {
-        attachments: {
-          select: {
-            id: true,
-          },
-        },
-
+        attachmentsId: true,
         filename: true,
         id: true,
         name: true,
@@ -83,12 +66,7 @@ export class FileControllerBase {
     const result = await this.service.file({
       where: params,
       select: {
-        attachments: {
-          select: {
-            id: true,
-          },
-        },
-
+        attachmentsId: true,
         filename: true,
         id: true,
         name: true,
@@ -113,20 +91,9 @@ export class FileControllerBase {
     try {
       return await this.service.updateFile({
         where: params,
-        data: {
-          ...data,
-
-          attachments: {
-            connect: data.attachments,
-          },
-        },
+        data: data,
         select: {
-          attachments: {
-            select: {
-              id: true,
-            },
-          },
-
+          attachmentsId: true,
           filename: true,
           id: true,
           name: true,
@@ -153,12 +120,7 @@ export class FileControllerBase {
       return await this.service.deleteFile({
         where: params,
         select: {
-          attachments: {
-            select: {
-              id: true,
-            },
-          },
-
+          attachmentsId: true,
           filename: true,
           id: true,
           name: true,

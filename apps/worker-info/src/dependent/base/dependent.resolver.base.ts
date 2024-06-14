@@ -20,18 +20,6 @@ import { DependentFindUniqueArgs } from "./DependentFindUniqueArgs";
 import { CreateDependentArgs } from "./CreateDependentArgs";
 import { UpdateDependentArgs } from "./UpdateDependentArgs";
 import { DeleteDependentArgs } from "./DeleteDependentArgs";
-import { DependentAddressFindManyArgs } from "../../dependentAddress/base/DependentAddressFindManyArgs";
-import { DependentAddress } from "../../dependentAddress/base/DependentAddress";
-import { DependentAttachmentFindManyArgs } from "../../dependentAttachment/base/DependentAttachmentFindManyArgs";
-import { DependentAttachment } from "../../dependentAttachment/base/DependentAttachment";
-import { DependentContactFindManyArgs } from "../../dependentContact/base/DependentContactFindManyArgs";
-import { DependentContact } from "../../dependentContact/base/DependentContact";
-import { DependentDocumentFindManyArgs } from "../../dependentDocument/base/DependentDocumentFindManyArgs";
-import { DependentDocument } from "../../dependentDocument/base/DependentDocument";
-import { DependentPhoneFindManyArgs } from "../../dependentPhone/base/DependentPhoneFindManyArgs";
-import { DependentPhone } from "../../dependentPhone/base/DependentPhone";
-import { DependentContactAuthorization } from "../../dependentContactAuthorization/base/DependentContactAuthorization";
-import { Request } from "../../request/base/Request";
 import { DependentService } from "../dependent.service";
 @graphql.Resolver(() => Dependent)
 export class DependentResolverBase {
@@ -70,19 +58,7 @@ export class DependentResolverBase {
   ): Promise<Dependent> {
     return await this.service.createDependent({
       ...args,
-      data: {
-        ...args.data,
-
-        dependentContactAuthorization: args.data.dependentContactAuthorization
-          ? {
-              connect: args.data.dependentContactAuthorization,
-            }
-          : undefined,
-
-        request: {
-          connect: args.data.request,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -93,19 +69,7 @@ export class DependentResolverBase {
     try {
       return await this.service.updateDependent({
         ...args,
-        data: {
-          ...args.data,
-
-          dependentContactAuthorization: args.data.dependentContactAuthorization
-            ? {
-                connect: args.data.dependentContactAuthorization,
-              }
-            : undefined,
-
-          request: {
-            connect: args.data.request,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -131,116 +95,5 @@ export class DependentResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => [DependentAddress], {
-    name: "dependentAddresses",
-  })
-  async findDependentAddresses(
-    @graphql.Parent() parent: Dependent,
-    @graphql.Args() args: DependentAddressFindManyArgs
-  ): Promise<DependentAddress[]> {
-    const results = await this.service.findDependentAddresses(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [DependentAttachment], {
-    name: "dependentAttachments",
-  })
-  async findDependentAttachments(
-    @graphql.Parent() parent: Dependent,
-    @graphql.Args() args: DependentAttachmentFindManyArgs
-  ): Promise<DependentAttachment[]> {
-    const results = await this.service.findDependentAttachments(
-      parent.id,
-      args
-    );
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [DependentContact], { name: "dependentContacts" })
-  async findDependentContacts(
-    @graphql.Parent() parent: Dependent,
-    @graphql.Args() args: DependentContactFindManyArgs
-  ): Promise<DependentContact[]> {
-    const results = await this.service.findDependentContacts(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [DependentDocument], {
-    name: "dependentDocuments",
-  })
-  async findDependentDocuments(
-    @graphql.Parent() parent: Dependent,
-    @graphql.Args() args: DependentDocumentFindManyArgs
-  ): Promise<DependentDocument[]> {
-    const results = await this.service.findDependentDocuments(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [DependentPhone], { name: "dependentPhones" })
-  async findDependentPhones(
-    @graphql.Parent() parent: Dependent,
-    @graphql.Args() args: DependentPhoneFindManyArgs
-  ): Promise<DependentPhone[]> {
-    const results = await this.service.findDependentPhones(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => DependentContactAuthorization, {
-    nullable: true,
-    name: "dependentContactAuthorization",
-  })
-  async getDependentContactAuthorization(
-    @graphql.Parent() parent: Dependent
-  ): Promise<DependentContactAuthorization | null> {
-    const result = await this.service.getDependentContactAuthorization(
-      parent.id
-    );
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @graphql.ResolveField(() => Request, {
-    nullable: true,
-    name: "request",
-  })
-  async getRequest(
-    @graphql.Parent() parent: Dependent
-  ): Promise<Request | null> {
-    const result = await this.service.getRequest(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

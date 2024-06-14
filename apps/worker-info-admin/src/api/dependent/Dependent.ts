@@ -1,10 +1,4 @@
-import { DependentAddress } from "../dependentAddress/DependentAddress";
-import { DependentAttachment } from "../dependentAttachment/DependentAttachment";
-import { DependentContactAuthorization } from "../dependentContactAuthorization/DependentContactAuthorization";
-import { DependentContact } from "../dependentContact/DependentContact";
-import { DependentDocument } from "../dependentDocument/DependentDocument";
-import { DependentPhone } from "../dependentPhone/DependentPhone";
-import { Request } from "../request/Request";
+import { JsonValue } from "type-fest";
 
 export type Dependent = {
   affectionateFirstName: string | null;
@@ -12,12 +6,12 @@ export type Dependent = {
   birthDate: Date | null;
   complete: boolean | null;
   credential: string | null;
-  dependentAddresses?: Array<DependentAddress>;
-  dependentAttachments?: Array<DependentAttachment>;
-  dependentContactAuthorization?: DependentContactAuthorization | null;
-  dependentContacts?: Array<DependentContact>;
-  dependentDocuments?: Array<DependentDocument>;
-  dependentPhones?: Array<DependentPhone>;
+  dependentAddresses: JsonValue;
+  dependentAttachments: JsonValue;
+  dependentContactAuthorizationId: string | null;
+  dependentContacts: JsonValue;
+  dependentDocuments: JsonValue;
+  dependentPhones: JsonValue;
   education: string | null;
   exclude: boolean | null;
   firstName: string | null;
@@ -26,7 +20,7 @@ export type Dependent = {
   lastName: string | null;
   maritalStatus: string | null;
   relationship: string | null;
-  request?: Request;
+  requestId: string;
   socialFirstName: string | null;
   socialLastName: string | null;
 };

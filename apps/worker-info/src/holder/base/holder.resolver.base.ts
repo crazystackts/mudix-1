@@ -20,24 +20,6 @@ import { HolderFindUniqueArgs } from "./HolderFindUniqueArgs";
 import { CreateHolderArgs } from "./CreateHolderArgs";
 import { UpdateHolderArgs } from "./UpdateHolderArgs";
 import { DeleteHolderArgs } from "./DeleteHolderArgs";
-import { AddressFindManyArgs } from "../../address/base/AddressFindManyArgs";
-import { Address } from "../../address/base/Address";
-import { AttachmentFindManyArgs } from "../../attachment/base/AttachmentFindManyArgs";
-import { Attachment } from "../../attachment/base/Attachment";
-import { ContactFindManyArgs } from "../../contact/base/ContactFindManyArgs";
-import { Contact } from "../../contact/base/Contact";
-import { DocumentFindManyArgs } from "../../document/base/DocumentFindManyArgs";
-import { Document } from "../../document/base/Document";
-import { EditedFieldFindManyArgs } from "../../editedField/base/EditedFieldFindManyArgs";
-import { EditedField } from "../../editedField/base/EditedField";
-import { FilialFindManyArgs } from "../../filial/base/FilialFindManyArgs";
-import { Filial } from "../../filial/base/Filial";
-import { PhoneFindManyArgs } from "../../phone/base/PhoneFindManyArgs";
-import { Phone } from "../../phone/base/Phone";
-import { SocioeconomicInfoFindManyArgs } from "../../socioeconomicInfo/base/SocioeconomicInfoFindManyArgs";
-import { SocioeconomicInfo } from "../../socioeconomicInfo/base/SocioeconomicInfo";
-import { ContactAuthorization } from "../../contactAuthorization/base/ContactAuthorization";
-import { Request } from "../../request/base/Request";
 import { HolderService } from "../holder.service";
 @graphql.Resolver(() => Holder)
 export class HolderResolverBase {
@@ -72,19 +54,7 @@ export class HolderResolverBase {
   async createHolder(@graphql.Args() args: CreateHolderArgs): Promise<Holder> {
     return await this.service.createHolder({
       ...args,
-      data: {
-        ...args.data,
-
-        contactAuthorization: args.data.contactAuthorization
-          ? {
-              connect: args.data.contactAuthorization,
-            }
-          : undefined,
-
-        request: {
-          connect: args.data.request,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -95,19 +65,7 @@ export class HolderResolverBase {
     try {
       return await this.service.updateHolder({
         ...args,
-        data: {
-          ...args.data,
-
-          contactAuthorization: args.data.contactAuthorization
-            ? {
-                connect: args.data.contactAuthorization,
-              }
-            : undefined,
-
-          request: {
-            connect: args.data.request,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -133,147 +91,5 @@ export class HolderResolverBase {
       }
       throw error;
     }
-  }
-
-  @graphql.ResolveField(() => [Address], { name: "addresses" })
-  async findAddresses(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: AddressFindManyArgs
-  ): Promise<Address[]> {
-    const results = await this.service.findAddresses(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Attachment], { name: "attachments" })
-  async findAttachments(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: AttachmentFindManyArgs
-  ): Promise<Attachment[]> {
-    const results = await this.service.findAttachments(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Contact], { name: "contacts" })
-  async findContacts(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: ContactFindManyArgs
-  ): Promise<Contact[]> {
-    const results = await this.service.findContacts(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Document], { name: "documents" })
-  async findDocuments(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: DocumentFindManyArgs
-  ): Promise<Document[]> {
-    const results = await this.service.findDocuments(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [EditedField], { name: "editedFields" })
-  async findEditedFields(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: EditedFieldFindManyArgs
-  ): Promise<EditedField[]> {
-    const results = await this.service.findEditedFields(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Filial], { name: "filial" })
-  async findFilial(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: FilialFindManyArgs
-  ): Promise<Filial[]> {
-    const results = await this.service.findFilial(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [Phone], { name: "phones" })
-  async findPhones(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: PhoneFindManyArgs
-  ): Promise<Phone[]> {
-    const results = await this.service.findPhones(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => [SocioeconomicInfo], {
-    name: "socioeconomicInfo",
-  })
-  async findSocioeconomicInfo(
-    @graphql.Parent() parent: Holder,
-    @graphql.Args() args: SocioeconomicInfoFindManyArgs
-  ): Promise<SocioeconomicInfo[]> {
-    const results = await this.service.findSocioeconomicInfo(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @graphql.ResolveField(() => ContactAuthorization, {
-    nullable: true,
-    name: "contactAuthorization",
-  })
-  async getContactAuthorization(
-    @graphql.Parent() parent: Holder
-  ): Promise<ContactAuthorization | null> {
-    const result = await this.service.getContactAuthorization(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @graphql.ResolveField(() => Request, {
-    nullable: true,
-    name: "request",
-  })
-  async getRequest(@graphql.Parent() parent: Holder): Promise<Request | null> {
-    const result = await this.service.getRequest(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

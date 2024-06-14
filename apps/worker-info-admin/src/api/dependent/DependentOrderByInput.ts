@@ -6,7 +6,12 @@ export type DependentOrderByInput = {
   birthDate?: SortOrder;
   complete?: SortOrder;
   credential?: SortOrder;
+  dependentAddresses?: SortOrder;
+  dependentAttachments?: SortOrder;
   dependentContactAuthorizationId?: SortOrder;
+  dependentContacts?: SortOrder;
+  dependentDocuments?: SortOrder;
+  dependentPhones?: SortOrder;
   education?: SortOrder;
   exclude?: SortOrder;
   firstName?: SortOrder;
@@ -15,7 +20,7 @@ export type DependentOrderByInput = {
   lastName?: SortOrder;
   maritalStatus?: SortOrder;
   relationship?: SortOrder;
-  request_id?: SortOrder;
+  requestId?: SortOrder;
   socialFirstName?: SortOrder;
   socialLastName?: SortOrder;
 };
