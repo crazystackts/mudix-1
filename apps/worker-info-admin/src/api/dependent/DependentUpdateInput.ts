@@ -1,0 +1,31 @@
+import { DependentAddressUpdateManyWithoutDependentsInput } from "./DependentAddressUpdateManyWithoutDependentsInput";
+import { DependentAttachmentUpdateManyWithoutDependentsInput } from "./DependentAttachmentUpdateManyWithoutDependentsInput";
+import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
+import { DependentContactUpdateManyWithoutDependentsInput } from "./DependentContactUpdateManyWithoutDependentsInput";
+import { DependentDocumentUpdateManyWithoutDependentsInput } from "./DependentDocumentUpdateManyWithoutDependentsInput";
+import { DependentPhoneUpdateManyWithoutDependentsInput } from "./DependentPhoneUpdateManyWithoutDependentsInput";
+import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+
+export type DependentUpdateInput = {
+  affectionateFirstName?: string | null;
+  affectionateLastName?: string | null;
+  birthDate?: Date | null;
+  complete?: boolean | null;
+  credential?: string | null;
+  dependentAddresses?: DependentAddressUpdateManyWithoutDependentsInput;
+  dependentAttachments?: DependentAttachmentUpdateManyWithoutDependentsInput;
+  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput | null;
+  dependentContacts?: DependentContactUpdateManyWithoutDependentsInput;
+  dependentDocuments?: DependentDocumentUpdateManyWithoutDependentsInput;
+  dependentPhones?: DependentPhoneUpdateManyWithoutDependentsInput;
+  education?: string | null;
+  exclude?: boolean | null;
+  firstName?: string | null;
+  gender?: string | null;
+  lastName?: string | null;
+  maritalStatus?: string | null;
+  relationship?: string | null;
+  request?: RequestWhereUniqueInput;
+  socialFirstName?: string | null;
+  socialLastName?: string | null;
+};

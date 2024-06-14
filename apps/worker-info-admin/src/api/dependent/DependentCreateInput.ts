@@ -1,0 +1,31 @@
+import { DependentAddressCreateNestedManyWithoutDependentsInput } from "./DependentAddressCreateNestedManyWithoutDependentsInput";
+import { DependentAttachmentCreateNestedManyWithoutDependentsInput } from "./DependentAttachmentCreateNestedManyWithoutDependentsInput";
+import { DependentContactAuthorizationWhereUniqueInput } from "../dependentContactAuthorization/DependentContactAuthorizationWhereUniqueInput";
+import { DependentContactCreateNestedManyWithoutDependentsInput } from "./DependentContactCreateNestedManyWithoutDependentsInput";
+import { DependentDocumentCreateNestedManyWithoutDependentsInput } from "./DependentDocumentCreateNestedManyWithoutDependentsInput";
+import { DependentPhoneCreateNestedManyWithoutDependentsInput } from "./DependentPhoneCreateNestedManyWithoutDependentsInput";
+import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+
+export type DependentCreateInput = {
+  affectionateFirstName?: string | null;
+  affectionateLastName?: string | null;
+  birthDate?: Date | null;
+  complete?: boolean | null;
+  credential?: string | null;
+  dependentAddresses?: DependentAddressCreateNestedManyWithoutDependentsInput;
+  dependentAttachments?: DependentAttachmentCreateNestedManyWithoutDependentsInput;
+  dependentContactAuthorization?: DependentContactAuthorizationWhereUniqueInput | null;
+  dependentContacts?: DependentContactCreateNestedManyWithoutDependentsInput;
+  dependentDocuments?: DependentDocumentCreateNestedManyWithoutDependentsInput;
+  dependentPhones?: DependentPhoneCreateNestedManyWithoutDependentsInput;
+  education?: string | null;
+  exclude?: boolean | null;
+  firstName?: string | null;
+  gender?: string | null;
+  lastName?: string | null;
+  maritalStatus?: string | null;
+  relationship?: string | null;
+  request: RequestWhereUniqueInput;
+  socialFirstName?: string | null;
+  socialLastName?: string | null;
+};

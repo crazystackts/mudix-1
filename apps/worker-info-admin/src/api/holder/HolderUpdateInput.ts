@@ -1,0 +1,37 @@
+import { AddressUpdateManyWithoutHoldersInput } from "./AddressUpdateManyWithoutHoldersInput";
+import { AttachmentUpdateManyWithoutHoldersInput } from "./AttachmentUpdateManyWithoutHoldersInput";
+import { ContactAuthorizationWhereUniqueInput } from "../contactAuthorization/ContactAuthorizationWhereUniqueInput";
+import { ContactUpdateManyWithoutHoldersInput } from "./ContactUpdateManyWithoutHoldersInput";
+import { DocumentUpdateManyWithoutHoldersInput } from "./DocumentUpdateManyWithoutHoldersInput";
+import { EditedFieldUpdateManyWithoutHoldersInput } from "./EditedFieldUpdateManyWithoutHoldersInput";
+import { FilialUpdateManyWithoutHoldersInput } from "./FilialUpdateManyWithoutHoldersInput";
+import { PhoneUpdateManyWithoutHoldersInput } from "./PhoneUpdateManyWithoutHoldersInput";
+import { RequestWhereUniqueInput } from "../request/RequestWhereUniqueInput";
+import { SocioeconomicInfoUpdateManyWithoutHoldersInput } from "./SocioeconomicInfoUpdateManyWithoutHoldersInput";
+
+export type HolderUpdateInput = {
+  addresses?: AddressUpdateManyWithoutHoldersInput;
+  affectionateFirstName?: string | null;
+  affectionateGender?: string | null;
+  affectionateLastName?: string | null;
+  attachments?: AttachmentUpdateManyWithoutHoldersInput;
+  birthDate?: Date | null;
+  contactAuthorization?: ContactAuthorizationWhereUniqueInput | null;
+  contacts?: ContactUpdateManyWithoutHoldersInput;
+  documents?: DocumentUpdateManyWithoutHoldersInput;
+  editedFields?: EditedFieldUpdateManyWithoutHoldersInput;
+  education?: string | null;
+  filial?: FilialUpdateManyWithoutHoldersInput;
+  firstName?: string | null;
+  gender?: string | null;
+  lastName?: string | null;
+  maritalStatus?: string | null;
+  phones?: PhoneUpdateManyWithoutHoldersInput;
+  request?: RequestWhereUniqueInput;
+  socialFirstName?: string | null;
+  socialGender?: string | null;
+  socialLastName?: string | null;
+  socioeconomicInfo?: SocioeconomicInfoUpdateManyWithoutHoldersInput;
+  token?: string | null;
+  typeField?: string | null;
+};

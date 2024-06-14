@@ -1,0 +1,38 @@
+import { Address } from "../address/Address";
+import { Attachment } from "../attachment/Attachment";
+import { ContactAuthorization } from "../contactAuthorization/ContactAuthorization";
+import { Contact } from "../contact/Contact";
+import { Document } from "../document/Document";
+import { EditedField } from "../editedField/EditedField";
+import { Filial } from "../filial/Filial";
+import { Phone } from "../phone/Phone";
+import { Request } from "../request/Request";
+import { SocioeconomicInfo } from "../socioeconomicInfo/SocioeconomicInfo";
+
+export type Holder = {
+  addresses?: Array<Address>;
+  affectionateFirstName: string | null;
+  affectionateGender: string | null;
+  affectionateLastName: string | null;
+  attachments?: Array<Attachment>;
+  birthDate: Date | null;
+  contactAuthorization?: ContactAuthorization | null;
+  contacts?: Array<Contact>;
+  documents?: Array<Document>;
+  editedFields?: Array<EditedField>;
+  education: string | null;
+  filial?: Array<Filial>;
+  firstName: string | null;
+  gender: string | null;
+  id: string;
+  lastName: string | null;
+  maritalStatus: string | null;
+  phones?: Array<Phone>;
+  request?: Request;
+  socialFirstName: string | null;
+  socialGender: string | null;
+  socialLastName: string | null;
+  socioeconomicInfo?: Array<SocioeconomicInfo>;
+  token: string | null;
+  typeField: string | null;
+};
