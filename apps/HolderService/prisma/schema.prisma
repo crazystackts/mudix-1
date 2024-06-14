@@ -1,0 +1,92 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Address {
+  city         String?
+  complement   String?
+  holderId     String
+  id           String  @id @default(uuid())
+  neighborhood String?
+  numberField  Int?    @map("number")
+  state        String?
+  street       String?
+  title        String?
+  zip          String?
+
+  @@map("Addresses")
+}
+
+model Attachment {
+  files    Json?
+  group    String?
+  holderId String
+  id       String  @id @default(uuid())
+
+  @@map("Attachments")
+}
+
+model ContactAuthorization {
+  email    Boolean?
+  holderId String
+  id       String   @id @default(uuid())
+  push     Boolean?
+  sms      Boolean?
+}
+
+model Contact {
+  email    String?
+  holderId String
+  id       String  @id @default(uuid())
+
+  @@map("Contacts")
+}
+
+model Document {
+  holderId    String
+  id          String  @id @default(uuid())
+  issuer      String?
+  numberField String? @map("number")
+  typeField   String? @map("type")
+
+  @@map("Documents")
+}
+
+model EditedField {
+  fieldName String?
+  holderId  String
+  id        String  @id @default(uuid())
+
+  @@map("EditedFields")
+}
+
+model Filial {
+  firstName String?
+  holderId  String
+  id        String  @id @default(uuid())
+  lastName  String?
+  typeField String? @map("type")
+}
+
+model Phone {
+  holderId    String
+  id          String  @id @default(uuid())
+  numberField String? @map("number")
+  typeField   String? @map("type")
+
+  @@map("Phones")
+}
+
+model SocioeconomicInfo {
+  familyIncomeCode  String?
+  familyIncomeTitle String?
+  holderId          String
+  id                String  @id @default(uuid())
+  salaryCode        String?
+  salaryTitle       String?
+}
