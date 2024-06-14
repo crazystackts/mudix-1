@@ -26,6 +26,7 @@ export type HolderCreateInput = {
   gender?: string | null;
   lastName?: string | null;
   maritalStatus?: string | null;
+  password: string;
   phones?: PhoneCreateNestedManyWithoutHoldersInput;
   request: RequestWhereUniqueInput;
   socialFirstName?: string | null;
@@ -34,4 +35,5 @@ export type HolderCreateInput = {
   socioeconomicInfo?: SocioeconomicInfoCreateNestedManyWithoutHoldersInput;
   token?: string | null;
   typeField?: string | null;
+  username: string;
 };

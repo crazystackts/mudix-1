@@ -197,6 +197,14 @@ class Holder {
   maritalStatus!: string | null;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
     required: false,
     type: () => [Phone],
   })
@@ -276,6 +284,14 @@ class Holder {
     nullable: true,
   })
   typeField!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  username!: string;
 }
 
 export { Holder as Holder };

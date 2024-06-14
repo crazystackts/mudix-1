@@ -30,6 +30,7 @@ export type HolderWhereInput = {
   id?: StringFilter;
   lastName?: StringNullableFilter;
   maritalStatus?: StringNullableFilter;
+  password?: StringFilter;
   phones?: PhoneListRelationFilter;
   request?: RequestWhereUniqueInput;
   socialFirstName?: StringNullableFilter;
@@ -38,4 +39,5 @@ export type HolderWhereInput = {
   socioeconomicInfo?: SocioeconomicInfoListRelationFilter;
   token?: StringNullableFilter;
   typeField?: StringNullableFilter;
+  username?: StringFilter;
 };

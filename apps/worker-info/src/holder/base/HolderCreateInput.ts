@@ -210,6 +210,14 @@ class HolderCreateInput {
   maritalStatus?: string | null;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
     required: false,
     type: () => PhoneCreateNestedManyWithoutHoldersInput,
   })
@@ -296,6 +304,14 @@ class HolderCreateInput {
     nullable: true,
   })
   typeField?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  username!: string;
 }
 
 export { HolderCreateInput as HolderCreateInput };

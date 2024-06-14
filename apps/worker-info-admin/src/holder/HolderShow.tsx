@@ -41,6 +41,7 @@ export const HolderShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <TextField label="Last Name" source="lastName" />
         <TextField label="Marital Status" source="maritalStatus" />
+        <TextField label="password" source="password" />
         <ReferenceField label="Request" source="request.id" reference="Request">
           <TextField source={REQUEST_TITLE_FIELD} />
         </ReferenceField>
@@ -49,6 +50,7 @@ export const HolderShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Social Last Name" source="socialLastName" />
         <TextField label="Token" source="token" />
         <TextField label="Type Field" source="typeField" />
+        <TextField label="username" source="username" />
         <ReferenceManyField
           reference="Address"
           target="holder_id"

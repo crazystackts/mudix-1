@@ -97,6 +97,7 @@ export const HolderCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Gender" source="gender" />
         <TextInput label="Last Name" source="lastName" />
         <TextInput label="Marital Status" source="maritalStatus" />
+        <TextInput label="password" source="password" />
         <ReferenceArrayInput
           source="phones"
           reference="Phone"
@@ -121,6 +122,7 @@ export const HolderCreate = (props: CreateProps): React.ReactElement => {
         </ReferenceArrayInput>
         <TextInput label="Token" source="token" />
         <TextInput label="Type Field" source="typeField" />
+        <TextInput label="username" source="username" />
       </SimpleForm>
     </Create>
   );

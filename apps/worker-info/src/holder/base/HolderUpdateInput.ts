@@ -211,6 +211,17 @@ class HolderUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  password?: string;
+
+  @ApiProperty({
+    required: false,
     type: () => PhoneUpdateManyWithoutHoldersInput,
   })
   @ValidateNested()
@@ -299,6 +310,17 @@ class HolderUpdateInput {
     nullable: true,
   })
   typeField?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  username?: string;
 }
 
 export { HolderUpdateInput as HolderUpdateInput };

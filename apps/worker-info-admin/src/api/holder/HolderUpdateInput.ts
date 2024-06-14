@@ -26,6 +26,7 @@ export type HolderUpdateInput = {
   gender?: string | null;
   lastName?: string | null;
   maritalStatus?: string | null;
+  password?: string;
   phones?: PhoneUpdateManyWithoutHoldersInput;
   request?: RequestWhereUniqueInput;
   socialFirstName?: string | null;
@@ -34,4 +35,5 @@ export type HolderUpdateInput = {
   socioeconomicInfo?: SocioeconomicInfoUpdateManyWithoutHoldersInput;
   token?: string | null;
   typeField?: string | null;
+  username?: string;
 };

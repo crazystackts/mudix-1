@@ -27,6 +27,7 @@ export type Holder = {
   id: string;
   lastName: string | null;
   maritalStatus: string | null;
+  password: string;
   phones?: Array<Phone>;
   request?: Request;
   socialFirstName: string | null;
@@ -35,4 +36,5 @@ export type Holder = {
   socioeconomicInfo?: Array<SocioeconomicInfo>;
   token: string | null;
   typeField: string | null;
+  username: string;
 };

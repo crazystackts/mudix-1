@@ -53,6 +53,7 @@ model Holder {
   id                    String                @id @default(uuid())
   lastName              String?
   maritalStatus         String?
+  password              String
   phones                Phone[]
   request               Request               @relation(fields: [request_id], references: [id])
   request_id            String
@@ -62,6 +63,7 @@ model Holder {
   socioeconomicInfo     SocioeconomicInfo[]
   token                 String?
   typeField             String?               @map("type")
+  username              String                @unique
 }
 
 model EditedField {

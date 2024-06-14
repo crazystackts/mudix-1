@@ -12,10 +12,12 @@ export type HolderOrderByInput = {
   id?: SortOrder;
   lastName?: SortOrder;
   maritalStatus?: SortOrder;
+  password?: SortOrder;
   request_id?: SortOrder;
   socialFirstName?: SortOrder;
   socialGender?: SortOrder;
   socialLastName?: SortOrder;
   token?: SortOrder;
   typeField?: SortOrder;
+  username?: SortOrder;
 };

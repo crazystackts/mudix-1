@@ -28,11 +28,13 @@ const CREATE_INPUT = {
   id: "exampleId",
   lastName: "exampleLastName",
   maritalStatus: "exampleMaritalStatus",
+  password: "examplePassword",
   socialFirstName: "exampleSocialFirstName",
   socialGender: "exampleSocialGender",
   socialLastName: "exampleSocialLastName",
   token: "exampleToken",
   typeField: "exampleTypeField",
+  username: "exampleUsername",
 };
 const CREATE_RESULT = {
   affectionateFirstName: "exampleAffectionateFirstName",
@@ -45,11 +47,13 @@ const CREATE_RESULT = {
   id: "exampleId",
   lastName: "exampleLastName",
   maritalStatus: "exampleMaritalStatus",
+  password: "examplePassword",
   socialFirstName: "exampleSocialFirstName",
   socialGender: "exampleSocialGender",
   socialLastName: "exampleSocialLastName",
   token: "exampleToken",
   typeField: "exampleTypeField",
+  username: "exampleUsername",
 };
 const FIND_MANY_RESULT = [
   {
@@ -63,11 +67,13 @@ const FIND_MANY_RESULT = [
     id: "exampleId",
     lastName: "exampleLastName",
     maritalStatus: "exampleMaritalStatus",
+    password: "examplePassword",
     socialFirstName: "exampleSocialFirstName",
     socialGender: "exampleSocialGender",
     socialLastName: "exampleSocialLastName",
     token: "exampleToken",
     typeField: "exampleTypeField",
+    username: "exampleUsername",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -81,11 +87,13 @@ const FIND_ONE_RESULT = {
   id: "exampleId",
   lastName: "exampleLastName",
   maritalStatus: "exampleMaritalStatus",
+  password: "examplePassword",
   socialFirstName: "exampleSocialFirstName",
   socialGender: "exampleSocialGender",
   socialLastName: "exampleSocialLastName",
   token: "exampleToken",
   typeField: "exampleTypeField",
+  username: "exampleUsername",
 };
 
 const service = {

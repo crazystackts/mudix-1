@@ -324,6 +324,7 @@ export class RequestControllerBase {
         id: true,
         lastName: true,
         maritalStatus: true,
+        password: true,
 
         request: {
           select: {
@@ -336,6 +337,7 @@ export class RequestControllerBase {
         socialLastName: true,
         token: true,
         typeField: true,
+        username: true,
       },
     });
     if (results === null) {

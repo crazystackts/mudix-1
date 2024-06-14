@@ -85,6 +85,7 @@ export class HolderControllerBase {
         id: true,
         lastName: true,
         maritalStatus: true,
+        password: true,
 
         request: {
           select: {
@@ -97,6 +98,7 @@ export class HolderControllerBase {
         socialLastName: true,
         token: true,
         typeField: true,
+        username: true,
       },
     });
   }
@@ -126,6 +128,7 @@ export class HolderControllerBase {
         id: true,
         lastName: true,
         maritalStatus: true,
+        password: true,
 
         request: {
           select: {
@@ -138,6 +141,7 @@ export class HolderControllerBase {
         socialLastName: true,
         token: true,
         typeField: true,
+        username: true,
       },
     });
   }
@@ -168,6 +172,7 @@ export class HolderControllerBase {
         id: true,
         lastName: true,
         maritalStatus: true,
+        password: true,
 
         request: {
           select: {
@@ -180,6 +185,7 @@ export class HolderControllerBase {
         socialLastName: true,
         token: true,
         typeField: true,
+        username: true,
       },
     });
     if (result === null) {
@@ -231,6 +237,7 @@ export class HolderControllerBase {
           id: true,
           lastName: true,
           maritalStatus: true,
+          password: true,
 
           request: {
             select: {
@@ -243,6 +250,7 @@ export class HolderControllerBase {
           socialLastName: true,
           token: true,
           typeField: true,
+          username: true,
         },
       });
     } catch (error) {
@@ -282,6 +290,7 @@ export class HolderControllerBase {
           id: true,
           lastName: true,
           maritalStatus: true,
+          password: true,
 
           request: {
             select: {
@@ -294,6 +303,7 @@ export class HolderControllerBase {
           socialLastName: true,
           token: true,
           typeField: true,
+          username: true,
         },
       });
     } catch (error) {

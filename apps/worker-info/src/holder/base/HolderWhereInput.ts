@@ -225,6 +225,17 @@ class HolderWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  password?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: () => PhoneListRelationFilter,
   })
   @ValidateNested()
@@ -313,6 +324,17 @@ class HolderWhereInput {
     nullable: true,
   })
   typeField?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  username?: StringFilter;
 }
 
 export { HolderWhereInput as HolderWhereInput };

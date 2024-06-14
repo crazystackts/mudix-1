@@ -1,1 +1,3 @@
-export enum EnumSecretsNameKey {}
+export enum EnumSecretsNameKey {
+    JwtSecretKey = "dsjfidsjfijdsijidsjxkxkzd"
+}
