@@ -1,0 +1,78 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model DependentAddress {
+  city         String?
+  complement   String?
+  dependentsId String
+  id           String  @id @default(uuid())
+  neighborhood String?
+  numberField  Int?    @map("number")
+  state        String?
+  street       String?
+  title        String?
+  zip          String?
+
+  @@map("DependentAddresses")
+}
+
+model DependentAttachment {
+  dependentFiles DependentFile[]
+  dependentsId   String
+  group          String?
+  id             String          @id @default(uuid())
+
+  @@map("DependentAttachments")
+}
+
+model DependentContactAuthorization {
+  dependentsId String
+  email        Boolean?
+  id           String   @id @default(uuid())
+  push         Boolean?
+  sms          Boolean?
+}
+
+model DependentContact {
+  dependentsId String
+  email        String?
+  id           String  @id @default(uuid())
+
+  @@map("DependentContacts")
+}
+
+model DependentDocument {
+  dependentsId String
+  id           String  @id @default(uuid())
+  issuer       String?
+  numberField  String? @map("number")
+  typeField    String? @map("type")
+
+  @@map("DependentDocuments")
+}
+
+model DependentFile {
+  dependentAttachments   DependentAttachment? @relation(fields: [dependentAttachmentsId], references: [id])
+  dependentAttachmentsId String?
+  filename               String?
+  id                     String               @id @default(uuid())
+  name                   String?
+  url                    String?
+
+  @@map("DependentFiles")
+}
+
+model DependentPhone {
+  dependentsId String
+  id           String  @id @default(uuid())
+  numberField  String? @map("number")
+  typeField    String? @map("type")
+
+  @@map("DependentPhones")
+}
