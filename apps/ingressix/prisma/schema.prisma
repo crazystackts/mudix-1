@@ -1,0 +1,135 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Order {
+  acquisitionChannel    String
+  customer              Customer         @relation(fields: [customerId], references: [id])
+  customerId            Int
+  id                    Int              @id @default(autoincrement())
+  items                 Item[]
+  onPremisesUuid        String?
+  orderCancellationDate DateTime?
+  orderConfirmationDate DateTime?
+  orderCreationDate     DateTime
+  orderStatus           String?
+  paymentHistories      PaymentHistory[]
+  paymentMethod         String
+  paymentUuid           String?
+  pixCode               String?
+  pixExpiration         DateTime?
+  pixExpirationTime     DateTime?
+  sessionCode           String
+
+  @@map("Orders")
+}
+
+model Customer {
+  cpf        BigInt
+  credential BigInt
+  id         Int     @id @default(autoincrement())
+  name       String
+  orders     Order[]
+
+  @@map("Customers")
+}
+
+model Event {
+  category       Category  @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  classification String
+  details        String
+  duration       String?
+  id             Int       @id @default(autoincrement())
+  image          String?
+  location       Location  @relation(fields: [locationId], references: [id])
+  locationId     BigInt
+  name           String
+  sessions       Session[]
+  status         String
+  unit           Unit      @relation(fields: [unitId], references: [id])
+  unitId         Int
+
+  @@map("Events")
+}
+
+model Category {
+  events Event[]
+  id     Int     @id @default(autoincrement())
+  name   String
+
+  @@map("Categories")
+}
+
+model Location {
+  events Event[]
+  id     BigInt  @id @default(autoincrement())
+  name   String
+
+  @@map("Locations")
+}
+
+model Unit {
+  events Event[]
+  id     Int     @id @default(autoincrement())
+  name   String
+
+  @@map("Units")
+}
+
+model Session {
+  dateTime DateTime
+  event    Event    @relation(fields: [eventId], references: [id])
+  eventId  Int
+  id       String   @id @default(cuid()) @map("code")
+  items    Item[]
+  tickets  Ticket[]
+
+  @@map("Sessions")
+}
+
+model Ticket {
+  cancellationDate DateTime?
+  id               Int       @id @default(autoincrement())
+  item             Item?     @relation(fields: [itemId], references: [id])
+  itemId           Int?
+  price            Float
+  priceCategory    String
+  priceDescription String
+  qrCode           String
+  refundDeadline   DateTime?
+  seatCode         String
+  session          Session   @relation(fields: [sessionCode], references: [id])
+  sessionCode      String
+  status           String
+
+  @@map("Tickets")
+}
+
+model PaymentHistory {
+  amount        Float
+  id            Int      @id @default(autoincrement())
+  order         Order    @relation(fields: [orderId], references: [id])
+  orderId       Int
+  paymentDate   DateTime
+  paymentMethod String
+
+  @@map("PaymentHistory")
+}
+
+model Item {
+  dateTime    DateTime
+  id          Int      @id @default(autoincrement())
+  order       Order    @relation(fields: [orderId], references: [id])
+  orderId     Int
+  session     Session  @relation(fields: [sessionCode], references: [id])
+  sessionCode String
+  tickets     Ticket[]
+
+  @@map("Items")
+}
