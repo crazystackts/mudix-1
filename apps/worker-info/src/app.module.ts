@@ -20,6 +20,7 @@ import { DependentContactAuthorizationModule } from "./dependentContactAuthoriza
 import { DependentContactModule } from "./dependentContact/dependentContact.module";
 import { DependentAttachmentModule } from "./dependentAttachment/dependentAttachment.module";
 import { DependentFileModule } from "./dependentFile/dependentFile.module";
+import { OpenAiModule } from "./OpenAi/openai.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -53,6 +54,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     DependentContactModule,
     DependentAttachmentModule,
     DependentFileModule,
+    OpenAiModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
