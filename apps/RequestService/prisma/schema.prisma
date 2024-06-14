@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Request {
+  channel    String?
+  dependents Json?
+  finalize   Boolean?
+  holder     Json?
+  id         String   @id @default(uuid())
+  ip         String?
+  renewal    Boolean?
+  step       String?
+  typeField  String?  @map("type")
+  workerId   String
+}
